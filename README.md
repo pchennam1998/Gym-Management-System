@@ -20,10 +20,10 @@
 • Wednesday<br /> 
 
 # Task Allocations:
-• Frontend: Pavan Sai Ch<br /> 
-• Backend: Alekhya<br /> 
+• Frontend: Pavan Sai Ch, Pavan Satyam<br /> 
+• Backend: Alekhya, Pavan Sai Ch<br /> 
 • Integration of Frontend and Backend: Pavan Satyam and Piyush<br />
-• Deployment: Pavan Sai, Pavan Satyam<br /> 
+• Deployment: Pavan Sai Ch, Pavan Satyam<br /> 
 • Documentation: Piyush, Alekhya<br /> 
 
 # XP Core Values:
