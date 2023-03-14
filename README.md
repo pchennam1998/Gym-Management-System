@@ -39,3 +39,6 @@ Project Board is available [here](https://github.com/gopinathsjsu/team-project-t
 Below is the link to Sprint sheet along with the Burndown charts.<br />
 
 [Sprint Sheet](https://docs.google.com/spreadsheets/d/15ESOcwAWS9KTMRUC7-Spi8IHdli4D_klHfBFUR8EXy4/edit?usp=sharing)
+
+# Architecture Diagram
+![](CMPE202_Architecture.png)
