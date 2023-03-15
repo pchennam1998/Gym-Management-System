@@ -44,4 +44,4 @@ Below is the link to Sprint sheet along with the Burndown charts.<br />
 ![](CMPE202_Architecture.png)
 
 # HomePage
-![](HomePage.epgz)
+![](HomePage.png)
