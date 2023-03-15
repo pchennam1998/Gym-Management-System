@@ -44,5 +44,11 @@ Below is the link to Sprint sheet along with the Burndown charts.<br />
 ![](CMPE202_Architecture.png)
 
 # UI Wireframes
-• Homepage<br /> 
+• Home Page<br /> 
 ![](HomePage.png)
+
+• Registration Page<br /> 
+![](RegistrationPage.png)
+
+• Login Page<br /> 
+![](Loginpage.png)
