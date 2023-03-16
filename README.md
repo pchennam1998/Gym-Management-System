@@ -52,3 +52,9 @@ Below is the link to Sprint sheet along with the Burndown charts.<br />
 
 • Login Page<br /> 
 ![](Loginpage.png)
+
+• Training Class Management Page<br /> 
+![](TrainClassMngt.png)
+
+• Manage Bookings Page<br /> 
+![](managebookings.png)
