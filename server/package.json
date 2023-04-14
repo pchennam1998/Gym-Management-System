@@ -1,28 +1,33 @@
 {
-    "name": "team-project-team-mavericks",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "proxy": "http://localhost:3001/",
-    "scripts": {
-      "start": "nodemon server/index.js",
-      "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    
-    "dependencies": {
-      "bcryptjs": "^2.4.3",
-      "dotenv": "^16.0.3",
-      "express": "^4.18.1",
-      "jsonwebtoken": "^8.5.1",
-      "moment": "^2.29.4",
-      "mongoose": "^6.6.3"
-    },
-    "devDependencies": {
-      "nodemon": "^2.0.20"
-    }
+  "name": "team-project-team-two0owt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "proxy": "http://localhost:3001/",
+  "scripts": {
+    "start": "nodemon server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gopinathsjsu/team-project-team-two0owt.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gopinathsjsu/team-project-team-two0owt/issues"
+  },
+  "homepage": "https://github.com/gopinathsjsu/team-project-team-two0owt#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.1",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.4",
+    "mongoose": "^6.6.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   }
-  
+}
