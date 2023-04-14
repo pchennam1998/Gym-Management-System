@@ -9,7 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 //import Home from "./Home/Home";
 //import Footer from "./Footer/Footer";
 //import FlightStatus from "./FlightStatus/FlightStatus";
-import LoginComponent from "./Login/LoginComponent";
+//import LoginComponent from "./Login/LoginComponent";
 //import AirportEmployeeDash from "./AirportEmployee/AirportEmployeeDash";
 //import AirlineEmployeeDash from "./AirlineEmployee/AirlineEmployee";
 //import Airlines from "./AirlinesAtSffo/airlinesAtSffo";

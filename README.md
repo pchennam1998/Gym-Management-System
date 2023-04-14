@@ -46,6 +46,7 @@ Below is the link to Sprint sheet along with the Burndown charts.<br />
 # UI Wireframes
 • Home Page<br /> 
 ![](HomePage.png)
+<img src="https://github.com/gopinathsjsu/team-project-team-two0owt/blob/main/documentation/wireframes/HomePage.png" width="600">
 
 • Registration Page<br /> 
 ![](RegistrationPage.png)
