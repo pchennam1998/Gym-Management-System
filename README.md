@@ -8,7 +8,7 @@
 
 # Tools Used:
 • Frontend: React JS<br />
-• Backend: NodeJS<br />
+• Backend: NodeJS <br />
 • Database: MongoDB<br />
 • REST API: Postman (for testing developed APIs)<br />
 • Cloud: Amazon Web Services (AWS) EC2 Cluster <br />
