@@ -50,12 +50,16 @@ Below is the link to Sprint sheet along with the Burndown charts.<br />
 
 • Registration Page<br /> 
 ![](RegistrationPage.png)
+<img src="https://github.com/gopinathsjsu/team-project-team-two0owt/blob/main/documentation/wireframes/RegistrationPage.png" width="600">
 
 • Login Page<br /> 
 ![](Loginpage.png)
+<img src="https://github.com/gopinathsjsu/team-project-team-two0owt/blob/main/documentation/wireframes/Loginpage.png" width="600">
 
 • Training Class Management Page<br /> 
 ![](TrainClassMngt.png)
+<img src="https://github.com/gopinathsjsu/team-project-team-two0owt/blob/main/documentation/wireframes/TrainClassMngt.png" width="600">
 
 • Manage Bookings Page<br /> 
 ![](managebookings.png)
+<img src="https://github.com/gopinathsjsu/team-project-team-two0owt/blob/main/documentation/wireframes/managebookings.png" width="600">
