@@ -32,21 +32,21 @@ function LoginComponent(props) {
     const auth = JSON.parse(localStorage.getItem("auth"));
     console.log(auth);
     if (auth && auth.employees[0].isLogged) {
-      navigateToRole(auth.employees[0].userRole);
+      //navigateToRole(auth.employees[0].userRole);
     }
   }, []);
 
-  function navigateToRole(role) {
+  /*function navigateToRole(role) {
     if (role == "airport") {
       console.log("redirecting");
       // redirecting to airport employee dash board
-      navigate("/AirportEmp");
+      //navigate("/AirportEmp");
     } else {
-      console.log("redirecting to airline dashboard");
+      //console.log("redirecting to airline dashboard");
 
-      navigate("/AirlineEmp/");
+      //navigate("/AirlineEmp/");
     }
-  }
+  }*/
 
   function checkRole(email) {
     // check  the role of user
@@ -89,7 +89,7 @@ function LoginComponent(props) {
 
           localStorage.setItem("auth", JSON.stringify(sitePersonel));
           props.changeLogged(true);
-          navigateToRole(response.data.type);
+          //navigateToRole(response.data.type);
           return true;
         } else {
         handleClick();
