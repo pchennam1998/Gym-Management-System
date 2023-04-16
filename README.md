@@ -42,6 +42,8 @@ Below is the link to Sprint sheet along with the Burndown charts.<br />
 
 # Architecture Diagram
 ![](CMPE202_Architecture.png)
+<img src="https://github.com/gopinathsjsu/team-project-team-two0owt/blob/main/documentation/wireframes/CMPE202_Architecture.png" width="600">
+
 
 # UI Wireframes
 • Home Page<br /> 
