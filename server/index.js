@@ -2,10 +2,11 @@ require('dotenv').config();
 const express = require("express");
 const mongoose = require("mongoose")
 const app = express();
-//const allRoutes = require('./routes/allRoute');
+const allRoutes = require('./routes/allRoute');
 
 const mongoString = process.env.DATABASE_URL;
 
+mongoose.set('strictQuery', false);
 mongoose.connect(mongoString,{
   useNewUrlParser:true,
   useUnifiedTopology: true
@@ -27,4 +28,4 @@ app.listen(3001, () => {
   console.log(`Server listening on 3001`);
 });
 
-//app.use('', allRoutes)
+app.use('', allRoutes)
