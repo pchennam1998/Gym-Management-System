@@ -1,0 +1,41 @@
+.loginButton{
+    background-color: #4072a2;
+    color:white
+}
+.LoginComponent{
+    margin-top: 30px;
+    margin-bottom: -60px;
+}
+.LoginComponent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .vh-100 {
+    max-width: 400px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .img-fluid {
+    display: block; /* Ensures the image is a block element */
+    max-width: 100%; /* Makes sure the image doesn't exceed its container */
+    height: auto; /* Maintains aspect ratio */
+    margin: 0 auto; /* Centers the image horizontally */
+  }
+  .divider:after,
+  .divider:before {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #eee;
+  }
+  .h-custom {
+    height: calc(100% - 73px);
+  }
+  @media (max-width: 450px) {
+    .h-custom {
+    height: 100%;
+    }
+  }
