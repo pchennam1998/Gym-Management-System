@@ -31,6 +31,6 @@ const LoginSchema = new Schema({
     }
 }, { timestamps: true });
 
-const LoginInfo = mongoose.model('LoginInformationl', LoginSchema)
+const LoginInfo = mongoose.model('LoginInformation', LoginSchema)
 
 module.exports = LoginInfo;

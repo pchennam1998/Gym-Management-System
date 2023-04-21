@@ -35,11 +35,6 @@ const GenInfoSchema = new Schema({
         type: String,
         required: true
 
-    },
-    images: {
-        type: Image,
-        required: true
-
     }
 }, { timestamps: true });
 

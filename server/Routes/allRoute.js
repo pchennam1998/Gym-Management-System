@@ -5,6 +5,8 @@ const router = express.Router();
 
 const loginController = require("../controller/loginController");
 
+const genInfoController = require("../controller/genInfoController");
+
 //const availableGates = require("../controller/occupiedGatesBeltsController");
 
 //const gateStateController = require("../controller/gateStateController");
@@ -29,6 +31,7 @@ router.get("/", function(req,res){
 
 //Login Authentication API
 router.post("/all/login", loginController.logIn);
+router.post("/all/genInfo", genInfoController.genIn);
 
 
 //Get Available Gates and Belts API

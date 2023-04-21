@@ -5,7 +5,7 @@ const LoginInfo = require('../models/loginSchema');
 exports.logIn = async (req,res) => {
 
     try {
-        const {emailAddress,password} = req.body;
+        const {emailAddress,password,type} = req.body;
         console.log(emailAddress)
         console.log(password)
         if(! (emailAddress && password)) {
@@ -14,7 +14,7 @@ exports.logIn = async (req,res) => {
         const user = await userModel.findOne({emailAddress})
         console.log(user)
         if(password == "Pavan@2023"){
-            return res.json({'login':'successful', 'type':LoginInfo.type})
+            return res.json({'login':'successful', 'type':type})
         }
         return res.status(200).send("Incorrect Details")
 
