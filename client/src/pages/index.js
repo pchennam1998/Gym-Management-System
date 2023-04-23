@@ -1,9 +1,8 @@
 import React from 'react';
 import './style.css'
-import { BrowserRouter as Router, Routes, Route}
-	from 'react-router-dom';
-import Login from './login';
-import LoginComponent from './login';
+//import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+//import Login from './Login/login';
+//import LoginComponent from './Login/login';
 const Home = () => {
 return (
 	<div class="title">
@@ -11,7 +10,7 @@ return (
     {/* <img src='ban.jpeg' alt="banner1"/> */}
     
     <div class="himg">
-	<h1>Welcome to FitGym</h1>
+	  <h1>Welcome to FitGym</h1>
 	
 <div class="button-container">
 <button class="button" onClick={handleLoginClick}>Login</button>

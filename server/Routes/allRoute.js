@@ -7,6 +7,8 @@ const loginController = require("../controller/loginController");
 
 const genInfoController = require("../controller/genInfoController");
 
+const logHoursController = require("../controller/logHoursController");
+
 //const availableGates = require("../controller/occupiedGatesBeltsController");
 
 //const gateStateController = require("../controller/gateStateController");
@@ -31,7 +33,11 @@ router.get("/", function(req,res){
 
 //Login Authentication API
 router.post("/all/login", loginController.logIn);
-router.post("/all/genInfo", genInfoController.genIn);
+//router.post("/all/genInfo", genInfoController.genIn);
+
+router.get("/all/genInfo", genInfoController.genIn);
+
+router.post("/all/logInHours", logHoursController.logInHoursMember);
 
 
 //Get Available Gates and Belts API

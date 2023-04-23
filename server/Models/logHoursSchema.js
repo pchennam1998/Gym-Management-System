@@ -1,47 +1,29 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const GenInfoSchema = new Schema({
+const LogMemHours = new Schema({
+    memberId: {
+        type: String,
+        required: true
+    },
     services: {
         type: String,
         required: true
     },
-    details: {
-        type: String,
-        required: true
-    },
-    classDay: {
-        type: String,
-        required: true
-
-    },
     startTime: {
         type: Date,
         required: true
-
     },
     endTime: {
         type: Date,
         required: true
-
     },
-    pricing: {
+    locationId: {
         type: String,
         required: true
-
-    },
-    contact: {
-        type: String,
-        required: true
-
-    },
-    location: {
-        type: String,
-        required: true
-
     }
 }, { timestamps: true });
 
-const GenInfo = mongoose.model('GeneralInformation', GenInfoSchema)
+const GenInfo = mongoose.model('LogHoursMember', LogMemHours)
 
 module.exports = GenInfo;
