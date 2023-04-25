@@ -8,9 +8,6 @@ return (
 	<>
 	
 	<Nav>
-	
- 
-
 		<NavMenu>
 		<a href="/" >< img src="logo.jpeg" alt="Image" /></a>
 			<NavLink to="/" activeStyle>
@@ -19,7 +16,7 @@ return (
 		<NavLink to="/service" activeStyle>
 			Service
 		</NavLink>
-		<NavLink to="/clsses" activeStyle>
+		<NavLink to="/classes" activeStyle>
 			Classes
 		</NavLink>
 		<NavLink to="/pricing" activeStyle>

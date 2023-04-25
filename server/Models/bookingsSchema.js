@@ -1,12 +1,16 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const LogMemHours = new Schema({
-    memberId: {
+const BookingSchema = new Schema({
+    services: {
         type: String,
         required: true
     },
-    services: {
+    startDate: {
+        type: Date,
+        required: true
+    },
+    location: {
         type: String,
         required: true
     },
@@ -17,13 +21,9 @@ const LogMemHours = new Schema({
     endTime: {
         type: Date,
         required: true
-    },
-    locationId: {
-        type: String,
-        required: true
     }
 }, { timestamps: true });
 
-const GenInfo = mongoose.model('LogHoursMember', LogMemHours)
+const BookingInfo = mongoose.model('Bookings', BookingSchema)
 
-module.exports = GenInfo;
+module.exports = BookingInfo;
