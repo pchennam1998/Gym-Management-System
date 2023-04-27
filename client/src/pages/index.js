@@ -14,12 +14,15 @@ return (
 	
 <div class="button-container">
 <button class="button" onClick={handleLoginClick}>Login</button>
-  <button class="button">SignUp</button>
+  <button class="button" onClick={handleSignupClick}>SignUp</button>
 </div></div></div>
 );
 function handleLoginClick() {
   // Redirect to the login page
   window.location.href = "./login";
+}
+function handleSignupClick() {
+  window.location.href = "./SignupForm"
 }
 };
 

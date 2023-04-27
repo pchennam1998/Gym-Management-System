@@ -14,6 +14,7 @@ import Contact from './pages/Contacts/contact';
 import MemberHomePage from './pages/MemberHomePage/member';
 import HCMember from './pages/HCMemberHomePage/hcmember';
 import LoginComponent from './pages/Login/login';
+import SignupComponent from './pages/Signup/SignupForm';
 import { GymEnrollment } from './pages/GymEnrollment';
 import { LogHours } from './pages/LogHours';
 import ActivitiesChart from './pages/ActivitiesChart';
@@ -44,6 +45,7 @@ function App() {
       <Route path='/member' element={<MemberHomePage/>} />
       <Route path='/hcmember' element={<HCMember/>} />
       <Route path='/login' element={<LoginComponent callBackHandler={callBackHandler} />} />
+      <Route path='/SignupForm' element={<SignupComponent />} />
     </Routes>
     </Router>
     
