@@ -45,17 +45,21 @@ function LoginComponent(props) {
     const auth = JSON.parse(localStorage.getItem("auth"));
     console.log(auth);
     if (auth && auth.employees[0].isLogged) {
-      navigateToRole(auth.employees[0].userRole);
+      // localStorage.setItem("auth", false);
+      props.callBackHandler();
+      navigateToRole("m");
     }
   }, []);
 
 function navigateToRole(role) {
   if (role === "Health Club Member") {
     console.log("redirecting");
+    props.callBackHandler();
     // redirecting to Health Club employee dash board
     //navigate("/hcmember");
   } else {
     console.log("redirecting to member dashboard");
+    props.callBackHandler();
     navigate("/member");
   }
 }

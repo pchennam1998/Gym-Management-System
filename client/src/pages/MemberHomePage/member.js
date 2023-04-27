@@ -3,14 +3,8 @@ import axios from "axios";
 
 function Member() {
 
-    const initialValues = {
-      emailAddress: "",
-      services: "",
-      startTime: "",
-      endTime: "",
-      location: ""
-    }
-    const [data,setData]=useState(initialValues);
+    const initialValues = []
+    const [pagedata,setPagedata]=useState(initialValues);
     const [emailAddress,setEmailaddress]=useState();
 
     //var emailAddress = "pavansai.chennam@sjsu.edu"
@@ -18,13 +12,16 @@ function Member() {
     useEffect(() => {
       // Update the document title using the browser API
       console.log("test")
+      
       //setTest("aaa")
       axios.get('/all/member')
       .then((response) => {
         console.log(response.data);
-        const data = response.data;
-        setData(data);
-        setEmailaddress(data.emailAddress);
+        console.log(response.data.details);
+        const data = response.data.details;
+        setPagedata(data);
+        
+        setEmailaddress(data[0].emailAddress);
         console.log('Data is being retrieved');
         console.log(response.data);
       })
@@ -37,10 +34,7 @@ function Member() {
   return (
     <div>
     <h1>Member Home Page</h1>
-      <h1>
-        data= {}
-        <div>emailAddress: {emailAddress}</div>
-      </h1>
+      <h2>{emailAddress}</h2>
     </div>
   );
 }
