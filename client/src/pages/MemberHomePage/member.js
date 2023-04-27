@@ -1,30 +1,48 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
 import axios from "axios";
 
-const Member = ({ user }) => {
-  const [workouts, setWorkouts] = useState([]);
+function Member() {
 
-  useEffect(() => {
-    axios.get(`/api/login?userId=${user.id}`).then((response) => {
-      setWorkouts(response.data);
-    });
-  }, [user.id]);
+    const initialValues = {
+      emailAddress: "",
+      services: "",
+      startTime: "",
+      endTime: "",
+      location: ""
+    }
+    const [data,setData]=useState(initialValues);
+    const [emailAddress,setEmailaddress]=useState();
+
+    //var emailAddress = "pavansai.chennam@sjsu.edu"
+
+    useEffect(() => {
+      // Update the document title using the browser API
+      console.log("test")
+      //setTest("aaa")
+      axios.get('/all/member')
+      .then((response) => {
+        console.log(response.data);
+        const data = response.data;
+        setData(data);
+        setEmailaddress(data.emailAddress);
+        console.log('Data is being retrieved');
+        console.log(response.data);
+      })
+      .catch((e) => {
+        console.log("123");
+        alert(e.message);
+      });
+    },[]);
 
   return (
     <div>
-      <h1>Welcome, {user.name}!</h1>
-      <h2>Your Workouts:</h2>
-      {workouts.map((workout) => (
-        <div key={workout.id}>
-          <Link to={`/workouts/${workout.id}`}>
-            <h3>{workout.name}</h3>
-          </Link>
-          <p>{workout.description}</p>
-        </div>
-      ))}
+    <h1>Member Home Page</h1>
+      <h1>
+        data= {}
+        <div>emailAddress: {emailAddress}</div>
+      </h1>
     </div>
   );
-};
+}
 
 export default Member;

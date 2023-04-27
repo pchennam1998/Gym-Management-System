@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const ActivitySchema = new Schema({
+const MemberSchema = new Schema({
     emailAddress:{
         type: String,
         required: true,
@@ -26,6 +26,6 @@ const ActivitySchema = new Schema({
     }
 }, { timestamps: true });
 
-const ActivityInfo = mongoose.model('Activity', ActivitySchema)
+const MemberInfo = mongoose.model('MemberInformation', MemberSchema)
 
-module.exports = ActivityInfo;
+module.exports = MemberInfo;

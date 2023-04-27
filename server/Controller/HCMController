@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const GenInfo = require('../models/genInfoSchema'); 
+const HCMInfo = require('../models/genInfoSchema'); 
 
 exports.getServiceDetails = async (req, res) => {
 
@@ -9,7 +9,7 @@ exports.getServiceDetails = async (req, res) => {
         //type = req.body.type
         resLocation = req.body.location
 
-        const allData = await GenInfo.find()
+        const allData = await HCMInfo.find()
 
         while(allData.location == resLocation) {
             Exercise = allData.services

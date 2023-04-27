@@ -9,6 +9,8 @@ const genInfoController = require("../controller/genInfoController");
 
 const logHoursController = require("../controller/logHoursController");
 
+const memberController = require("../controller/memberController");
+
 //const availableGates = require("../controller/occupiedGatesBeltsController");
 
 //const gateStateController = require("../controller/gateStateController");
@@ -36,6 +38,8 @@ router.post("/all/login", loginController.logIn);
 //router.post("/all/genInfo", genInfoController.genIn);
 
 router.get("/all/genInfo", genInfoController.genIn);
+
+router.get("/all/member", memberController.getMemberSchedule);
 
 router.post("/all/logInHours", logHoursController.logInHoursMember);
 
