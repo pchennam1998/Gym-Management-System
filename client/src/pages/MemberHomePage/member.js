@@ -13,7 +13,6 @@ function Member() {
     const [location, setLocation]=useState();
 
     useEffect(() => {
-      // Update the document title using the browser API
       
       axios.get('/all/member')
       .then((response) => {
@@ -28,7 +27,7 @@ function Member() {
 
         //startTime = dateFormat({startTime}, "dddd, mmmm dS, yyyy");
         dateFormat(startTime, "dddd, mmmm dS, yyyy, h:MM:ss TT");
-        dateFormat(endTime, "dddd, mmmm dS, yyyy, h:MM:ss TT")
+        dateFormat(endTime, "dddd, mmmm dS, yyyy, h:MM:ss TT");
         //endTime = dateFormat({endTime}, "dddd, mmmm dS, yyyy");
       })
       .catch((e) => {

@@ -2,34 +2,18 @@ const jwt = require("jsonwebtoken");
 const GenInfo = require('../models/genInfoSchema');
 
 exports.genIn = async (req,res) => {
+    const {location, classDay} = req.body;
+    if(!location) {
+        return res.status(400).json({error: "Missing required input"});
+    }
 
     try {
-        const location = req.body.location;
-        const service = req.body.services;
-        const classday = req.body.classday;
-        const start = req.body.startTime;
-        const end = req.body.endTime;
-        const price = req.body.pricing;
-
-        console.log(location)
-        if(! (location)) {
-            return res.status(200).send("Please select the location to view the results");
+        const result = await GenInfo.findOne({location});
+        if(location === result.location) {
+            return res.json(result)        
         }
-        //const user = await userModel.findOne({emailAddress})
-        //console.log(user)
-        if(location == "San Jose Downtown"){
-            console.log(service)
-            return res.json({'services':service})
-        }
-        else if (location == "Santa Clara"){
-            console.log(service)
-            return res.json({'location':location})
-        }
-        return res.status(200).send("Incorrect Details")
-
-        }
-    catch(err) {
-        console.log(err)
-        return res.status(500).send("Server error")
+        //res.json({"details": result});
+    } catch(e) {
+        res.status(500).json({error: e.message});
     }
 }

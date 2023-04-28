@@ -30,8 +30,8 @@ function App() {
   return (
     
     <Router>
-    <Navbar />
-   {(localStorage.getItem("auth")) && <Sidebar />}
+    {<Navbar />}
+    {/* {(localStorage.getItem("auth")) && <Sidebar />} */}
     <Routes>
       <Route  path='/'  element={<Home />} />
       <Route path='/gymenrollment' element={<GymEnrollment/>} />

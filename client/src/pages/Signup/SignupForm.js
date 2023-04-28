@@ -14,14 +14,8 @@ const [password, setPassword] = useState('');
 const navigate = useNavigate();
 
 function navigateToRole(role) {
-    if (role === "Health Club Member") {
-      console.log("redirecting");
-      // redirecting to Health Club employee dash board
-      navigate("/pricing");
-    } else {
       console.log("redirecting to member dashboard");
-      navigate("/classes");
-    }
+      navigate("/login");
   }
 
 const handleSubmit = async (e) => {
