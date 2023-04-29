@@ -7,6 +7,8 @@ import Sidebar from "./components/Sidebar";
 // import LoginComponent from './Login/LoginComponent';
 // import { BrowserRouter, Route ,Routes} from 'react-router-dom';
 import Home from './pages';
+import React from 'react';
+
 import Service from './pages/Service/service';
 import Classes from './pages/Classes/classes';
 import Pricing from './pages/Pricing/pricing';
