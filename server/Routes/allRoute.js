@@ -3,11 +3,15 @@ const router = express.Router();
 
 //const flightScheduleControllers = require("../controller/flightScheduleController");
 
-const loginController = require("../controller/loginController");
+const loginController = require("../Controller/loginController");
 
-const genInfoController = require("../controller/genInfoController");
+const genInfoController = require("../Controller/genInfoController");
 
-const logHoursController = require("../controller/logHoursController");
+const logHoursController = require("../Controller/logHoursController");
+
+const memberController = require("../Controller/memberController");
+
+const signupController = require("../Controller/signupController")
 
 //const availableGates = require("../controller/occupiedGatesBeltsController");
 
@@ -36,6 +40,10 @@ router.post("/all/login", loginController.logIn);
 //router.post("/all/genInfo", genInfoController.genIn);
 
 router.get("/all/genInfo", genInfoController.genIn);
+
+router.post("/all/signup", signupController.SignupInfo);
+
+router.get("/all/member", memberController.getMemberSchedule);
 
 router.post("/all/logInHours", logHoursController.logInHoursMember);
 

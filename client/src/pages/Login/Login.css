@@ -1,6 +1,9 @@
 .loginButton{
     background-color: #4072a2;
-    color:white
+    color:white;
+    font-size: 16px;
+    border-radius: 4px;
+    padding: 8px 16px;
 }
 .LoginComponent{
     margin-top: 30px;
@@ -14,14 +17,16 @@
   }
   
   .vh-100 {
-    max-width: 400px;
+    max-width: 2000px;
+    max-height: 2000px;
     width: 100%;
     margin: 0 auto;
   }
   .img-fluid {
     display: block; /* Ensures the image is a block element */
     max-width: 100%; /* Makes sure the image doesn't exceed its container */
-    height: auto; /* Maintains aspect ratio */
+    /*height: 680px; /* Maintains aspect ratio */
+    /*width: 800px;*/
     margin: 0 auto; /* Centers the image horizontally */
   }
   .divider:after,
@@ -34,7 +39,7 @@
   .h-custom {
     height: calc(100% - 73px);
   }
-  @media (max-width: 450px) {
+  @media (max-width: 900px) {
     .h-custom {
     height: 100%;
     }

@@ -1,6 +1,6 @@
 import React from "react";
 import './index.css';
-import { Logo, Nav, NavLink, NavMenu }
+import { Nav, NavLink, NavMenu }
 	from "./NavbarElements";
 
 const Navbar = () => {
@@ -9,7 +9,7 @@ return (
 	
 	<Nav>
 		<NavMenu>
-		<a href="/" >< img src="logo.jpeg" alt="Image" /></a>
+		<a href="/" ><img src="logo.jpeg" alt="Sample" /></a>
 			<NavLink to="/" activeStyle>
 				Home
 			</NavLink>

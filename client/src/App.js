@@ -16,16 +16,24 @@ import Contact from './pages/Contacts/contact';
 import MemberHomePage from './pages/MemberHomePage/member';
 import HCMember from './pages/HCMemberHomePage/hcmember';
 import LoginComponent from './pages/Login/login';
+import SignupComponent from './pages/Signup/SignupForm';
 import { GymEnrollment } from './pages/GymEnrollment';
 import { LogHours } from './pages/LogHours';
 import ActivitiesChart from './pages/ActivitiesChart';
 import ClassSchedule from './pages/ClassSchedule';
+import { useState } from 'react';
 function App() {
+  const [state,setSate]=useState(true)
+
+  function callBackHandler(){
+    console.log("handler called")
+    setSate(!state);
+  }
   return (
     
     <Router>
-    <Navbar />
-    <Sidebar />
+    {<Navbar />}
+    {/* {(localStorage.getItem("auth")) && <Sidebar />} */}
     <Routes>
       <Route  path='/'  element={<Home />} />
       <Route path='/gymenrollment' element={<GymEnrollment/>} />
@@ -38,7 +46,8 @@ function App() {
       <Route path='/pricing' element={<Pricing/>} />
       <Route path='/member' element={<MemberHomePage/>} />
       <Route path='/hcmember' element={<HCMember/>} />
-      <Route path='/login' element={<LoginComponent />} />
+      <Route path='/login' element={<LoginComponent callBackHandler={callBackHandler} />} />
+      <Route path='/SignupForm' element={<SignupComponent />} />
     </Routes>
     </Router>
     
