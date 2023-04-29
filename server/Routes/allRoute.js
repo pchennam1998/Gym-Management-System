@@ -45,6 +45,8 @@ router.post("/all/signup", signupController.SignupInfo);
 
 router.get("/all/member", memberController.getMemberSchedule);
 
+router.get("/all/details", memberController.allDetails);
+
 router.post("/all/logInHours", logHoursController.logInHoursMember);
 
 

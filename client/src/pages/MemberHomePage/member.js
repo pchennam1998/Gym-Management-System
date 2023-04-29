@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import dateFormat from 'dateformat';
-import './member.css';
-import { Router } from 'react-router-dom';
 import TreadmillStopwatch from './TreadmillStopwatch';
 import UseStaircase from './UseStaircase';
 import Cycling from './Cycling';
+
+
 function Member() {
-  const initialValues = [];
-  const [pagedata, setPagedata] = useState(initialValues);
-  const [services, setServices] = useState();
-  const [startTime, setStarttime] = useState();
-  const [endTime, setEndtime] = useState();
-  const [location, setLocation] = useState();
-  const [timer, setTimer] = useState(null);
-  const [elapsedTime, setElapsedTime] = useState(0);
+
+    const initialValues = []
+    const [pagedata,setPagedata]=useState(initialValues);
+    //const [emailAddress,setEmailaddress]=useState();
+    const [services,setServices]=useState();
+    const [startTime,setStarttime]=useState();
+    const [endTime, setEndtime]=useState();
+    const [location, setLocation]=useState();
 
   useEffect(() => {
     axios.get('/all/member')
@@ -32,43 +32,18 @@ function Member() {
     });
   },[]);
 
-  useEffect(() => {
-    let interval;
-    if (timer) {
-      interval = setInterval(() => {
-        setElapsedTime(Date.now() - timer);
-      }, 1);
-    }
-    return () => clearInterval(interval);
-  }, [timer]);
-
-  const handleStart = () => {
-    setTimer(Date.now());
-  };
-
-  const handleStop = () => {
-    if (timer) {
-      setElapsedTime(Date.now() - timer);
-      setTimer(null);
-    }
-  };
-
-  const handleReset = () => {
-    setTimer(null);
-    setElapsedTime(0);
-  };
-
   return (
     
     // {<TreadmillStopwatch />}
    
     <div>
-      <h1>Member Dashboard</h1><br />
+    <h1>Member Dashboard</h1><br></br>
+      {/* <h2>{emailAddress}</h2> */}
       <div>
-        <h3>Class Schedule for a week</h3>
-        <img src='https://fitpage.in/wp-content/uploads/2021/10/Article_Banner-1-1.jpg' height="350" width="450" alt="Class Schedule" />
-        <h4>{services} at {location}</h4>
-        <h4>{dateFormat(startTime, "dddd, h:MM TT")} to {dateFormat(endTime, "dddd, h:MM TT")}</h4>
+      <h3 color='#'>Class Schedule for a week</h3>
+      <img src='https://fitpage.in/wp-content/uploads/2021/10/Article_Banner-1-1.jpg' hegiht="350" width="450"></img>
+      <h4>{services} at {location}</h4>
+      <h4>{dateFormat(startTime, "dddd, h:MM TT")} to {dateFormat(endTime, "dddd, h:MM TT")}</h4>
       </div>
       {/* <div class="activities">
         <div >

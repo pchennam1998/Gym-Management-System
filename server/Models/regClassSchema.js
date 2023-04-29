@@ -23,6 +23,10 @@ const RegisterClasses = new Schema({
     startDate: {
         type: Date,
         required: true
+    },
+    weekDay: {
+        type: [String],
+        required: true
     }
 }, { timestamps: true });
 
