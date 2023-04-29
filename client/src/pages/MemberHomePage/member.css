@@ -1,8 +1,5 @@
-.title{
-    
 
-    
-}
+
 
 .button-container {
     display: flex;
@@ -10,7 +7,7 @@
     margin-top: 20px;
   }
   
-  .button {
+  button {
     background-color: #fff;
     color: #000;
     border: none;
@@ -24,7 +21,7 @@
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
   margin: 0 10px;
   }
-  .button:hover{
+  button:hover{
     background-color: black;
     color: white;
   
@@ -57,7 +54,7 @@
     font-size:10px;
     transition: font-size 0.5s ease;
 }
-.himg{
+.img{
   background-color: rgba(1, 1, 1, 0);
   display: flex;
   flex-direction: column;
@@ -73,5 +70,34 @@
 .title:hover{
   color:gray;
   font-size:30px;
+}
+.activities {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.activities > div {
+  width: 33.33%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.activity{
+  margin: "20px";
+  border: 1px solid black;
+  padding: 10px;
+}
+.button {
+  background-color: #fff;
+  color: #000;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 10px;
+padding: 20px;
+box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+margin: 0 10px;
 }
 /* Add any other styles you need here */
