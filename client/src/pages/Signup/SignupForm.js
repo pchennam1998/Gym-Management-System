@@ -13,14 +13,15 @@ const [username, setUsername] = useState('');
 const [password, setPassword] = useState('');
 const navigate = useNavigate();
 
-function navigateToRole(role) {
-      console.log("redirecting to member dashboard");
-      navigate("/login");
-  }
+// function navigateToRole(role) {
+//       console.log("redirecting to member dashboard");
+//       navigate("/login");
+//   }
 
 const handleSubmit = async (e) => {
 e.preventDefault();
 try {
+setType(type);
 const response = await axios.post('/all/signup', {
 type,
 firstName,
@@ -31,7 +32,7 @@ password,
 });
 console.log(ErrorResponse);
 console.log(response.data);
-navigateToRole(response.data.type);
+navigate("/login");
 } catch (error) {
 console.log(error);
 }

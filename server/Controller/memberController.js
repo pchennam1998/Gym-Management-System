@@ -3,6 +3,20 @@ const jwt = require("jsonwebtoken");
 //const MemInfo = require('../models/loginSchema');
 //const LoginInfo = require('../models/loginSchema');
 const MemInfo = require('../models/memberSchema');
+const RegInfo = require('../models/regClassSchema');
+
+exports.allDetails = async (req, res) => {
+  try {
+    const data = await RegInfo.find();
+
+    if (data) {
+      return res.json(data);
+    }
+    return res.json({});
+  } catch (err) {
+    return res.status(500).send("Server error");
+  }
+};
 
 exports.getMemberSchedule = async (req, res) => {
     //console.log(await mongoose.connection.db.listCollections());
