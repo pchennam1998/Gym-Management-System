@@ -66,7 +66,7 @@ function navigateToRole(role) {
     console.log(role);
     console.log("redirecting to member dashboard");
     props.callBackHandler();
-    navigate("/");
+    navigate("/login");
   }
 }
 
@@ -206,14 +206,14 @@ const handleSubmit = (e) => {
         <section className="vh-100">
           <div className="container-fluid h-custom">
             <div className="row d-flex justify-content-center align-items-center h-100">
-              <div className="col-md-9 col-lg-6 col-xl-5">
+              {/* <div className="col-md-9 col-lg-6 col-xl-5">
                 <img
                   src="https://blog.wod.guru/wp-content/uploads/2022/10/WodGuru-Membership-Management-Software.png"
                   className="img-fluid"
                   alt="Logo"
                   activeStyle={{ width: '1500', height: '1000'}}
                 />
-              </div>
+              </div> */}
               <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
                 <form
                   onSubmit={(e) => {

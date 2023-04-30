@@ -37,23 +37,26 @@ const SignupForm = () => {
     <form onSubmit={handleSubmit} className="signup-form">
        <div className="signup-form__field">
         <label className="signup-form__label">First Name:</label>
-        <input type="text" value={firstName} onChange={(e) => setFirstname(e.target.value)} className="signup-form__input" />
+        <input type="text" value={firstName} onChange={(e) => setFirstname(e.target.value)} 
+        className="signup-form__input" placeholder="Enter your First Name"/>
       </div>
       <div className="signup-form__field">
         <label className="signup-form__label">Last Name:</label>
-        <input type="text" value={lastName} onChange={(e) => setLastname(e.target.value)} className="signup-form__input" />
+        <input type="text" value={lastName} onChange={(e) => setLastname(e.target.value)} 
+        className="signup-form__input" placeholder="Enter your Last Name"/>
       </div>
       <div className="signup-form__field">
         <label className="signup-form__label">Email:</label>
-        <input type="email" value={emailAddress} onChange={(e) => setEmailaddress(e.target.value)} className="signup-form__input" />
+        <input type="email" value={emailAddress} onChange={(e) => setEmailaddress(e.target.value)} className="signup-form__input" placeholder="Enter your Mail Address"/>
       </div>
       <div className="signup-form__field">
-        <label className="signup-form__label">Username(Mail Address):</label>
-        <input type="email" value={username} onChange={(e) => setUsername(e.target.value)} className="signup-form__input" />
+        <label className="signup-form__label">Username:</label>
+        <input type="email" value={username} onChange={(e) => setUsername(e.target.value)} 
+        className="signup-form__input"  placeholder="Same as above email address"/>
       </div>
       <div className="signup-form__field">
         <label className="signup-form__label">Password:</label>
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="signup-form__input" />
+        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="signup-form__input"  placeholder="Enter the password"/>
       </div>
       <button type="submit" className="signup-form__button">Sign up</button>
     </form>
