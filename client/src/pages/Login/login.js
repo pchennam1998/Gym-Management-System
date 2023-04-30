@@ -22,7 +22,7 @@ from 'mdb-react-ui-kit';*/
 function LoginComponent(props) {
   // for navigation redirection
   const navigate = useNavigate();
-  const [role, setRole] = useState(null);
+  const [type, setRole] = useState(null);
   const [open, setOpen] = React.useState(false);
   const handleClick = () => {
     setOpen(true);
@@ -52,15 +52,21 @@ function LoginComponent(props) {
   }, []);
 
 function navigateToRole(role) {
-  if (role === "Health Club Member") {
+  if (role === "HCM") {
     console.log("redirecting");
     props.callBackHandler();
     // redirecting to Health Club employee dash board
-    //navigate("/hcmember");
-  } else {
+    navigate("/hcmember");
+  } else if (role === 'M') {
+    console.log(role);
     console.log("redirecting to member dashboard");
     props.callBackHandler();
     navigate("/member");
+  } else {
+    console.log(role);
+    console.log("redirecting to member dashboard");
+    props.callBackHandler();
+    navigate("/");
   }
 }
 
@@ -258,6 +264,7 @@ const handleSubmit = (e) => {
                     <button
                       type="submit"
                       className="btn loginButton btn-lg"
+                      color="green"
                       activeStyle={{
                         paddingLeft: "2.5rem",
                         paddingRight: "2.5rem",

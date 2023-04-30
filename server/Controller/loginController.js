@@ -13,7 +13,7 @@ exports.logIn = async (req,res) => {
         const user = await LoginInfo.findOne({emailAddress})
         console.log(user)
         if(password == user.password){
-            return res.json({'login':'successful', 'type':type})
+            return res.json({'login':'successful', 'type':user.type})
         }
         return res.status(200).send("Incorrect Details")
 

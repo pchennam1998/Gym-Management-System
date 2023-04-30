@@ -11,14 +11,14 @@ function Clsses() {
     {
       location: 'Santa Clara',
       services: 'Threadmill',
-      classDay: ['Monday', 'Wednesday', 'Friday'],
+      classDay: "Monday, Wednesday and Friday",
       startTime: new Date('T10:00:00'),
       endTime: new Date('T10:00:00')
     },
     {
 		location: 'San Jose Downtown',
-		services: 'Threadmill',
-		classDay: ['Monday', 'Wednesday', 'Friday'],
+		services: 'Weight Lifting',
+		classDay: 'Tuesday, Thursday and Saturday',
 		startTime: new Date('T10:00:00'),
 		endTime: new Date('T10:00:00')
     }
@@ -41,10 +41,10 @@ function Clsses() {
 
       {exercise &&
         <div className="grid-block">
-          <h2>{exercise.services}</h2>
-          <p>Class Days: {exercise.classDay}</p><br></br>
-          <p>Login Time: {exercise.startTime ? exercise.startTime.toLocaleString() : '-'}</p><br></br>
-          <p>Logout Time: {exercise.endTime ? exercise.endTime.toLocaleString() : '-'}</p>
+          <h2><b>{exercise.services}</b></h2>
+          <p><b>Class Days:</b> {exercise.classDay}</p><br></br>
+          <p><b>Login Time:</b> {exercise.startTime ? exercise.startTime.toLocaleString() : '-'}</p><br></br>
+          <p><b>Logout Time:</b> {exercise.endTime ? exercise.endTime.toLocaleString() : '-'}</p>
         </div>
       }
     </div>
