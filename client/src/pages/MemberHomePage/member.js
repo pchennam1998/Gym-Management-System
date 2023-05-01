@@ -51,7 +51,7 @@ function Member() {
       <div>
       <button className="btn btn-danger" onClick={handleLogout}>Logout</button>
       <h3 color='#'>Class Schedule for a week</h3>
-      <img src='https://fitpage.in/wp-content/uploads/2021/10/Article_Banner-1-1.jpg' hegiht="350" width="450"></img>
+      <img src='https://fitpage.in/wp-content/uploads/2021/10/Article_Banner-1-1.jpg' hegiht="350" width="450" alt="samp"></img>
       <h4>{services} at {location}</h4>
       <h4>{dateFormat(startTime, "dddd, h:MM TT")} to {dateFormat(endTime, "dddd, h:MM TT")}</h4>
       </div>

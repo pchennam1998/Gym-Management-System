@@ -47,6 +47,8 @@ router.get("/all/member", memberController.getMemberSchedule);
 
 router.get("/all/details", memberController.allDetails);
 
+router.get("/users", memberController.allMembers);
+
 router.post("/all/logInHours", logHoursController.logInHoursMember);
 
 

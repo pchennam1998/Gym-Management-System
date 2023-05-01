@@ -1,7 +1,7 @@
 const e = require("express");
 const jwt = require("jsonwebtoken");
 //const MemInfo = require('../models/loginSchema');
-//const LoginInfo = require('../models/loginSchema');
+const LoginInfo = require('../models/loginSchema');
 const MemInfo = require('../models/memberSchema');
 const RegInfo = require('../models/regClassSchema');
 
@@ -11,6 +11,19 @@ exports.allDetails = async (req, res) => {
 
     if (data) {
       return res.json(data);
+    }
+    return res.json({});
+  } catch (err) {
+    return res.status(500).send("Server error");
+  }
+};
+
+exports.allMembers = async (req, res) => {
+  try {
+    const data1 = await LoginInfo.find();
+
+    if (data1) {
+      return res.json(data1);
     }
     return res.json({});
   } catch (err) {
