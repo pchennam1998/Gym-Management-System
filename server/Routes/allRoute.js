@@ -11,7 +11,9 @@ const logHoursController = require("../Controller/logHoursController");
 
 const memberController = require("../Controller/memberController");
 
-const signupController = require("../Controller/signupController")
+const signupController = require("../Controller/signupController");
+
+const hCMController = require("../Controller/hCMController");
 
 //const availableGates = require("../controller/occupiedGatesBeltsController");
 
@@ -49,7 +51,17 @@ router.get("/all/details", memberController.allDetails);
 
 router.get("/users", memberController.allMembers);
 
+router.get("/nonusers", memberController.allNonMembers);
+
+router.post("/checkin", memberController.checkIn);
+
+router.post("/checkout", memberController.checkOut);
+
 router.post("/all/logInHours", logHoursController.logInHoursMember);
+
+router.post("/all/enroll", hCMController.putEnrollDetails);
+
+router.post("/updatetype/:emailAddress", hCMController.putEnrollType);
 
 
 //Get Available Gates and Belts API

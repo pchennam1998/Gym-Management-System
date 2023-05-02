@@ -9,20 +9,21 @@ const DayActivitySchema = new Schema({
         match : /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/ 
     },
     services: {
-        type: String,
-        required: true
+        type: String
     },
     checkInTime: {
         type: Date,
         required: true
     },
     checkOutTime: {
-        type: Date,
-        required: true
+        type: Date
     },
     location: {
         type: String,
         required: true
+    },
+    checkType: {
+        type: Boolean
     }
 }, { timestamps: true });
 

@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const LoginInfo = require('../models/loginSchema');
 const MemInfo = require('../models/memberSchema');
 const RegInfo = require('../models/regClassSchema');
+const DayActivityInfo = require('../models/dayActivitySchema');
 
 exports.allDetails = async (req, res) => {
   try {
@@ -18,9 +19,9 @@ exports.allDetails = async (req, res) => {
   }
 };
 
-exports.allMembers = async (req, res) => {
+/*exports.allMembers = async (req, res) => {
   try {
-    const data1 = await LoginInfo.find();
+    const data1 = await LoginInfo.find({ type: "M" });
 
     if (data1) {
       return res.json(data1);
@@ -29,7 +30,7 @@ exports.allMembers = async (req, res) => {
   } catch (err) {
     return res.status(500).send("Server error");
   }
-};
+};*/
 
 exports.getMemberSchedule = async (req, res) => {
     //console.log(await mongoose.connection.db.listCollections());
@@ -39,41 +40,105 @@ exports.getMemberSchedule = async (req, res) => {
     } catch(e) {
         res.status(500).json({error: e.message});
     }
-    /*try {
-      const reqemail = moment(req.body.email);
-      const reqloc = moment(req.body.location);
+  };
 
-      console.log(reqemail)
-      console.log(reqloc)
+  exports.allNonMembers = async (req, res) => {
+    try {
+      const data2 = await LoginInfo.find({ type: "NM" });
+      res.json(data2);
+    }
+    catch (err) {
+      console.error(err);
+      res.status(500).send('Server Error');
+    }
+  };
 
-      const data = await MemInfo.find({
-        email: reqemail,
-        reqloc: reqloc,
-      });
+  exports.allMembers = async (req, res) => {
+    try {
+      const data1 = await LoginInfo.find({ type: "M" });
   
-      if (data) {
-        return res.json({});
+      if (data1) {
+        const dayActivities = await DayActivityInfo.find();
+        const dayActivityMap = {};
+        dayActivities.forEach((activity) => {
+          dayActivityMap[activity.emailAddress] = activity;
+        });
+  
+        const memberList = data1.map((member) => {
+          const checkInTime = dayActivityMap[member.emailAddress]
+            ? dayActivityMap[member.emailAddress].checkInTime
+            : null;
+          const checkOutTime = dayActivityMap[member.emailAddress]
+            ? dayActivityMap[member.emailAddress].checkOutTime
+            : null;
+  
+          return {
+            ...member.toObject(),
+            checkInTime,
+            checkOutTime,
+          };
+        });
+  
+        return res.json(memberList);
       }
-    } catch (error) {
+  
+      return res.json({});
+    } catch (err) {
       return res.status(500).send("Server error");
     }
-    try {
-        const {emailAddress,location} = req.body;
-        console.log(emailAddress)
-        console.log(location)
-        if(! (emailAddress && location)) {
-            return res.status(200).send("All inputs are required");
-        }
-        const user = await MemInfo.findOne({emailAddress})
-        console.log(user)
-        if(location == user.location){
-            return res.json({'email': emailAddress});
-           }
-        return res.status(200).send("Incorrect Data")
-
-        }
-    catch(err) {
-        console.log(err)
-        return res.status(500).send("Server error")
-    }*/
   };
+  
+  exports.checkIn = async (req, res) => {
+    try {
+      const email = req.body.emailAddress;
+      const member = await LoginInfo.findOne({ emailAddress: email });
+      console.log(member)
+  
+      if (!member || member.type !== 'M') {
+        return res.status(400).json({ msg: 'Invalid member email' });
+      }
+  
+      const dayActivity = await DayActivityInfo.findOne({ emailAddress: email });
+  
+      if (dayActivity) {
+        return res.status(400).json({ msg: 'User already checked-in' });
+      }
+  
+      const newActivity = new DayActivityInfo({
+        emailAddress: email,
+        checkInTime: new Date(),
+        location: 'San Jose Downtown'
+      });
+  
+      await newActivity.save();
+      res.json({ msg: 'User checked-in successfully' });
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server error');
+    }
+  };
+  
+  exports.checkOut = async (req, res) => {
+    try {
+      const email = req.body.emailAddress;
+      const member = await LoginInfo.findOne({ emailAddress: email });
+  
+      if (!member || member.type !== 'M') {
+        return res.status(400).json({ msg: 'Invalid member email' });
+      }
+  
+      const dayActivity = await DayActivityInfo.findOne({ emailAddress: email });
+  
+      if (!dayActivity) {
+        return res.status(400).json({ msg: 'User has not checked-in yet' });
+      }
+  
+      dayActivity.checkOutTime = new Date();
+      await dayActivity.save();
+      res.json({ msg: 'User checked-out successfully' });
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server error');
+    }
+  };
+  

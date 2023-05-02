@@ -49,7 +49,7 @@ function Member() {
     <h1>Member Dashboard</h1><br></br>
       {/* <h2>{emailAddress}</h2> */}
       <div>
-      <button className="btn btn-danger" onClick={handleLogout}>Logout</button>
+      <button className="btn btn-danger" style={{float: 'right'}} onClick={handleLogout}>Logout</button>
       <h3 color='#'>Class Schedule for a week</h3>
       <img src='https://fitpage.in/wp-content/uploads/2021/10/Article_Banner-1-1.jpg' hegiht="350" width="450" alt="samp"></img>
       <h4>{services} at {location}</h4>

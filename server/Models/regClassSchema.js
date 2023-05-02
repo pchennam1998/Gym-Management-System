@@ -8,11 +8,10 @@ const RegisterClasses = new Schema({
         unique: true,
         match : /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/ 
     },
-    service: {
-        type: String,
-        required: true
-    },
     type: {
+        type: String
+    },
+    service: {
         type: String,
         required: true
     },
@@ -24,8 +23,8 @@ const RegisterClasses = new Schema({
         type: Date,
         required: true
     },
-    weekDay: {
-        type: [String],
+    endDate: {
+        type: Date,
         required: true
     }
 }, { timestamps: true });

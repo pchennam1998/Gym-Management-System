@@ -22,6 +22,7 @@ import { LogHours } from './pages/LogHours';
 import ActivitiesChart from './pages/ActivitiesChart';
 import ClassSchedule from './pages/ClassSchedule';
 import { useState } from 'react';
+import EnrollComponent from './pages/HCMemberHomePage/enrollmember';
 function App() {
   const [state,setSate]=useState(true)
 
@@ -48,6 +49,7 @@ function App() {
       <Route path='/hcmember' element={<HCMember/>} />
       <Route path='/login' element={<LoginComponent callBackHandler={callBackHandler} />} />
       <Route path='/SignupForm' element={<SignupComponent />} />
+      <Route path='/enrollmember' element={<EnrollComponent/>} />
     </Routes>
     </Router>
     
