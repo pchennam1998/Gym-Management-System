@@ -7,13 +7,14 @@ import Cycling from './Cycling';
 import { useNavigate } from "react-router-dom";
 
 
-function Member() {
+function Member(props) {
 
   const navigate = useNavigate();
 
 	const handleLogout = () => {
 		console.log("Logout came")
 		localStorage.removeItem('auth');
+    props.callBackHandler()
 		navigate('/login');
   }
 

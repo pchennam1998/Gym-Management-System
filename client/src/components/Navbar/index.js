@@ -3,14 +3,15 @@ import './index.css';
 import { Nav, NavLink, NavMenu }
 	from "./NavbarElements";
 
-const Navbar = () => {
+const Navbar = (props) => {
 return (
 	<>
 	
 	<Nav>
 		<NavMenu>
-		<a href="/" ><img src="logo.jpeg" alt="Sample" /></a>
-			<NavLink to="/" activeStyle>
+			{props.loginstate && ""}
+		<a><img src="logo.jpeg" alt="Sample" /></a>
+			<NavLink to={(localStorage.getItem("auth") && JSON.parse(localStorage.getItem("auth")).employees[0].userRole=="M" )? "/member":"/login" } activeStyle>
 				Home
 			</NavLink>
 		<NavLink to="/service" activeStyle>

@@ -44,7 +44,7 @@ exports.getMemberSchedule = async (req, res) => {
 
   exports.allNonMembers = async (req, res) => {
     try {
-      const data2 = await LoginInfo.find({ type: "NM" });
+      const data2 = await LoginInfo.find();
       res.json(data2);
     }
     catch (err) {

@@ -5,6 +5,8 @@ import "./Login.css";
 import 'bootstrap/dist/css/bootstrap.css';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
+import { Link } from 'react-router-dom';
+
 //import { green } from "@mui/material/colors";
 /*import {
   MDBBtn,
@@ -103,6 +105,7 @@ function authorize(emailAddress, password) {
           userName: emailAddress,
           userRole: response.data.type,
           isLogged: true,
+          
         };
         User.employees.push(employee);
         console.log(User);
@@ -255,9 +258,9 @@ const handleSubmit = (e) => {
                       Remember me
                       {/* </label> */}
                     </div>
-                    <a href="#!" className="text-body">
-                      Forgot password?
-                    </a>
+                    <Link to="/forgotpassword" className="text-body">
+                         Forgot password?
+                    </Link>
                   </div>
 
                   <div className="text-center text-lg-start mt-4 pt-2">

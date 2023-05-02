@@ -69,3 +69,21 @@ exports.putEnrollType = async (req, res) => {
         res.status(500).send('Server error');
       }
 }
+
+exports.getEnrollment = async (req, res) => {
+    try {
+        
+        const { emailAddress, service } = req.body;
+        const enrollment = await RegInfo.exists({ emailAddress, service });
+        console.log(enrollment);
+        console.log({emailAddress}, {service});
+         if (enrollment) {
+            res.status(200).json({ success: true });
+        } else {
+            res.status(404).json({ success: false });
+        }
+      } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server error');
+      }
+}

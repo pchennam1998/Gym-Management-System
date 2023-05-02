@@ -11,21 +11,57 @@ const EnrollForm = () => {
   const [location, setLocation] = useState('New York');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
+  const [checked, setChecked] = useState(false);
   const [type, setType] = useState('M');
+  const [enrollmentExists, setEnrollmentExists] = useState(false);
+  const [memType,setMemType]=useState(searchParams.get('type'));
 
   const navigate = useNavigate();
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = {
+            emailAddress: emailAddress,
+            service: service,
+        }
+        console.log(1)
+        const response = await axios.post("/enrollments", data); 
+        console.log(response)
+        setEnrollmentExists(true);
+        console.log(enrollmentExists);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, [emailAddress, service]);
+
+  useEffect(() => {
     if (startDate) {
+     if(checked){
+        const sevenLater = new Date(startDate);
+        sevenLater.setDate(sevenLater.getDate() + 7);
+        setEndDate(sevenLater.toISOString().substring(0, 10));
+        
+     }
+        else{
       const sixMonthsLater = new Date(startDate);
       sixMonthsLater.setMonth(sixMonthsLater.getMonth() + 6);
       setEndDate(sixMonthsLater.toISOString().substring(0, 10));
     }
+    }
   }, [startDate]);
+
+  const handleCheck = () => {
+    setChecked(!checked);
+
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     const enrollData = {
       emailAddress,
       type: 'M',
@@ -38,7 +74,8 @@ const EnrollForm = () => {
     console.log(enrollData);
 
     try {
-      await axios.post(`/updatetype/${emailAddress}`, {type});
+    if(!checked) {
+      await axios.post(`/updatetype/${emailAddress}`, {type}); }
       const response = await axios.post('/all/enroll', enrollData);
       navigate('/hcmember');
       console.log(response.data);
@@ -83,6 +120,18 @@ const EnrollForm = () => {
           <option value="Santa Clara">Santa Clara</option>
         </select>
       </div>
+{console.log(type)}
+      { memType == "NM" &&
+      <div>
+      <label>
+        <input
+          type="checkbox"
+          checked={checked}
+          onChange={handleCheck}
+        />
+        Free Trial
+      </label>
+      </div>}
 
       <div>
         <label htmlFor="startDate">Start Date:</label>
@@ -100,11 +149,18 @@ const EnrollForm = () => {
           type="date"
           id="endDate"
           value={endDate}
-          disabled
+          disabled 
         />
       </div>
 
-      <button classname="enroll-btn" type="submit">Enroll</button>
+      {!enrollmentExists &&
+      <button className="enroll-btn" type="submit">Enroll</button>}
+
+      {enrollmentExists && (
+    <p className="enroll-message">
+      You are already enrolled in this service
+    </p>
+  )}
     </form>
   );
 };

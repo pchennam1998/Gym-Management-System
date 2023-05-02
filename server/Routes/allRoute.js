@@ -63,6 +63,12 @@ router.post("/all/enroll", hCMController.putEnrollDetails);
 
 router.post("/updatetype/:emailAddress", hCMController.putEnrollType);
 
+router.post("/forgot-password", loginController.forgotPassword);
+
+router.post("/reset-password/:token", loginController.resetPassword);
+
+router.post("/enrollments", hCMController.getEnrollment);
+
 
 //Get Available Gates and Belts API
 /*router.post("/all/availableGatesBelts", availableGates.getAvailableGatesBelts);

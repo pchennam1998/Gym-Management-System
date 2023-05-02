@@ -23,6 +23,7 @@ import ActivitiesChart from './pages/ActivitiesChart';
 import ClassSchedule from './pages/ClassSchedule';
 import { useState } from 'react';
 import EnrollComponent from './pages/HCMemberHomePage/enrollmember';
+import ForgotPassword from './pages/Login/forgotpassword';
 function App() {
   const [state,setSate]=useState(true)
 
@@ -33,7 +34,7 @@ function App() {
   return (
     
     <Router>
-    {<Navbar />}
+    {<Navbar loginstate={state} />}
     {/* {(localStorage.getItem("auth")) && <Sidebar />} */}
     <Routes>
       <Route  path='/'  element={<Home />} />
@@ -45,11 +46,12 @@ function App() {
       <Route path='/contact' element={<Contact/>} />
       <Route path='/classes' element={<Classes/>} />
       <Route path='/pricing' element={<Pricing/>} />
-      <Route path='/member' element={<MemberHomePage/>} />
-      <Route path='/hcmember' element={<HCMember/>} />
+      <Route path='/member' element={<MemberHomePage callBackHandler={callBackHandler}/>} />
+      <Route path='/hcmember' element={<HCMember callBackHandler={callBackHandler}/>} />
       <Route path='/login' element={<LoginComponent callBackHandler={callBackHandler} />} />
       <Route path='/SignupForm' element={<SignupComponent />} />
       <Route path='/enrollmember' element={<EnrollComponent/>} />
+      <Route path='/forgotpassword' element={<ForgotPassword/>} />
     </Routes>
     </Router>
     

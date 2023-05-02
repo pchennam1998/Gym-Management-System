@@ -8,11 +8,16 @@ const HCMember = () => {
   const [nonmembers, SetNonmembers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [nsearchTerm, setNSearchTerm] = useState("");
+  const [status,setStatus]=useState();
 
   useEffect(() => {
     axios.get('/users')
       .then(response => {
         setMembers(response.data);
+		const map1 = new Map();
+		response.data.map(x=>map1.set(x.emailAddress,false));
+		setStatus(map1);
+		console.log(map1)
       })
       .catch(error => {
         console.log(error);
@@ -48,6 +53,8 @@ const HCMember = () => {
   const handleCheckin = (member) => {
 	console.log('*********');
 	console.log(member.emailAddress);
+	status.set(member.emailAddress,true);
+	console.log(status.get(member.emailAddress))
     axios.post('/checkin', { emailAddress: member.emailAddress })
       .then(response => {
         const updatedMembers = members.map(m => {
@@ -66,6 +73,8 @@ const HCMember = () => {
 
   const handleCheckout = (member) => {
 	console.log(member.checkInTime);
+	
+	status.set(member.emailAddress,false);
     axios.post('/checkout', { emailAddress: member.emailAddress })
       .then(response => {
         const updatedMembers = members.map(m => {
@@ -101,17 +110,17 @@ const HCMember = () => {
       <div className="search-bar">
         <input type="text" placeholder="Search for members to check the time" onChange={handleSearch} />
       </div>
-      <div className="member-grid">
+      <div className="nm-member-list">
         {filteredMembers.map(member => (
           <div key={member._id} className="member-card">
             <div className="member-info">
               <div className="member-name">{member.firstName} <button className="member-btn">{member.type}</button></div>
               <div className="member-email"><b>{member.emailAddress}</b></div>
               <div className="member-actions">
-                {(!member.checkInTime) && 
+                {(!status.get(member.emailAddress)) && 
                   <button className="checkin-btn" onClick={() => handleCheckin(member)}>Check In</button>
                 }
-                {(member.checkInTime && !member.checkOutTime) &&
+                {status.get(member.emailAddress) &&
                   <button className="checkout-btn" onClick={() => handleCheckout(member)}>Check Out</button>
                 }
               </div>
@@ -127,7 +136,7 @@ const HCMember = () => {
 		{filteredNonMembers.map(nonmember => (
       <div key={nonmember._id} class="member-card nm-type">
         <div class="nm-member-info">
-          <div class="nm-member-name">{nonmember.firstName} {nonmember.lastName} <Link to={`/enrollmember?email=${nonmember.emailAddress}`}>
+          <div class="nm-member-name">{nonmember.firstName} {nonmember.lastName} <Link to={`/enrollmember?email=${nonmember.emailAddress}&type=${nonmember.type}`}>
       <button className="enroll-btn">Enroll</button>
     </Link></div>
           {/* <div class="nm-member-email"><b>{nonmember.emailAddress}</b></div> */}
