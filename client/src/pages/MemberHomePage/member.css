@@ -29,8 +29,8 @@
   margin: 0 10px;
   }
   button:hover{
-    background-color: black;
-    color: white;
+    background-color: whitesmoke;
+    color: black;
   
    
   }
@@ -96,9 +96,19 @@
   box-sizing: border-box;
 }
 .activity{
-  margin: "20px";
-  border: 1px solid black;
+  margin: 20px;
   padding: 10px;
+  background-color: white;
+  color: black;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.activity:hover {
+  background-color: whitesmoke;
+  color: black;
+  cursor: pointer;
+  transform: scale(1.1);
 }
 .button {
   background-color: #fff;
@@ -134,7 +144,7 @@ body {
   margin: 50px auto;
   max-width: 600px;
   padding: 20px;
-  background-color: #b2cfb4;
+  background-color: white;
   border: 1px solid #0d0d0d;
   border-radius: 5px;
 }
@@ -143,7 +153,7 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
-  background-color: #f8f4f0;
+  background-color: whitesmoke;
 }
 
 .grid-box {
