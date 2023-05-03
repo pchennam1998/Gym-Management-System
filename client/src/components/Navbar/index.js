@@ -11,7 +11,10 @@ return (
 		<NavMenu>
 			{props.loginstate && ""}
 		<a><img src="logo.jpeg" alt="Sample" /></a>
-			<NavLink to={(localStorage.getItem("auth") && JSON.parse(localStorage.getItem("auth")).employees[0].userRole=="M" )? "/member":"/login" } activeStyle>
+			{/* <NavLink to={(localStorage.getItem("auth") && ((JSON.parse(localStorage.getItem("auth")).employees[0].userRole==="NM" )? "/member":"/" ) )} activeStyle>
+				Home
+			</NavLink> */}
+			<NavLink to="/" activeStyle>
 				Home
 			</NavLink>
 		<NavLink to="/service" activeStyle>

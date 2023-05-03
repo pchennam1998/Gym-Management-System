@@ -1,6 +1,13 @@
-
-
-
+.message {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+.message b {
+  font-size: 16px;
+}
 .button-container {
     display: flex;
     justify-content: space-around;
@@ -26,6 +33,13 @@
     color: white;
   
    
+  }
+  .message-display{
+    display: grid;
+    place-items: center; 
+    background-color: #f8d7da; 
+    color: #721c24; 
+    padding: 10px;
   }
   
   .loginButton{
@@ -101,3 +115,56 @@ box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 margin: 0 10px;
 }
 /* Add any other styles you need here */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  width: 100%;
+}
+
+.container {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 10px;
+  width: 100%;
+}
+
+.record-details {
+  margin: 50px auto;
+  max-width: 600px;
+  padding: 20px;
+  background-color: #b2cfb4;
+  border: 1px solid #0d0d0d;
+  border-radius: 5px;
+}
+
+.record-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  background-color: #f8f4f0;
+}
+
+.grid-box {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  width: 100%;
+}
+
+.grid-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 10px;
+}
+
+.grid-column {
+  font-weight: bold;
+}
+
+@media screen and (max-width: 768px) {
+  .grid-box {
+    grid-template-columns: 1fr;
+  }
+}

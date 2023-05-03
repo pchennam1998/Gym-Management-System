@@ -32,6 +32,7 @@ const EnrollForm = () => {
         console.log(enrollmentExists);
       } catch (error) {
         console.error(error);
+        setEnrollmentExists(false);
       }
     };
 

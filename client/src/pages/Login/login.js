@@ -68,7 +68,7 @@ function navigateToRole(role) {
     console.log(role);
     console.log("redirecting to member dashboard");
     props.callBackHandler();
-    navigate("/login");
+    navigate("/member");
   }
 }
 

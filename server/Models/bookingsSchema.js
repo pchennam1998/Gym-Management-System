@@ -2,12 +2,14 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const BookingSchema = new Schema({
+    emailAddress: {
+        type: String,
+        required: true,
+        unique: true,
+        match : /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/ 
+    },
     services: {
         type: String,
-        required: true
-    },
-    startDate: {
-        type: Date,
         required: true
     },
     location: {
@@ -20,6 +22,10 @@ const BookingSchema = new Schema({
     },
     endTime: {
         type: Date,
+        required: true
+    },
+    timeInterval: {
+        type: String,
         required: true
     }
 }, { timestamps: true });

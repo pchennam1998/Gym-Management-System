@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const GenInfo = require('../models/genInfoSchema'); 
+const BookingInfo = require('../models/bookingsSchema');
 
 exports.logInHoursMember = async (req, res) => {
 
@@ -66,6 +67,39 @@ exports.logOutHoursMember = async (req, res) => {
         
     }
     catch(err){
+        return res.status(500).send("Server error")
+    }
+}
+
+exports.storeLogHours = async (req, res) => {
+
+        emailAddress = req.body.emailAddress;
+        services = req.body.services;
+        location = req.body.location;
+        startTime = req.body.startTime;
+        endTime = req.body.endTime;
+        timeInterval = req.body.timeInterval;
+
+        console.log(req.body);
+
+        //const { emailAddress, services, location, startTime, endTime, timeInterval} = req.body;
+
+        try {
+            const newBooking = new BookingInfo({
+              emailAddress,
+              services,
+              location,
+              startTime,
+              endTime,
+              timeInterval
+            });
+        
+            await newBooking.save();
+        
+            res.status(201).json({ message: 'Booking created successfully' });
+          }
+        catch(err){
+        console.error(err.message);
         return res.status(500).send("Server error")
     }
 }

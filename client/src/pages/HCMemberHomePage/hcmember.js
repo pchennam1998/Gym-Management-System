@@ -114,24 +114,24 @@ const HCMember = () => {
         {filteredMembers.map(member => (
           <div key={member._id} className="member-card">
             <div className="member-info">
-              <div className="member-name">{member.firstName} <button className="member-btn">{member.type}</button></div>
-              <div className="member-email"><b>{member.emailAddress}</b></div>
-              <div className="member-actions">
+              <div className="member-name">{member.firstName}, {member.lastName} <button className="member-btn">{member.type} </button><div className="member-actions">
                 {(!status.get(member.emailAddress)) && 
                   <button className="checkin-btn" onClick={() => handleCheckin(member)}>Check In</button>
                 }
-                {status.get(member.emailAddress) &&
+				{status.get(member.emailAddress) &&
                   <button className="checkout-btn" onClick={() => handleCheckout(member)}>Check Out</button>
                 }
-              </div>
+              </div></div>
+              {/* <div className="member-email"><b>{member.emailAddress}</b>
+			  </div> */}
             </div>
           </div>
         ))}
       </div>
 	  <div class="nm-member-list nm-type">
-		<h3><b>Enroll Non members for different services</b></h3>
+		<h3><b>Enroll Members/Non members for different Services or Free Trials</b></h3>
 	  <div className="search-bar">
-        <input type="text" placeholder="Search for non members to enroll them" onChange={handleSearch1} />
+        <input type="text" placeholder="Search for members/non members " onChange={handleSearch1} />
       </div>
 		{filteredNonMembers.map(nonmember => (
       <div key={nonmember._id} class="member-card nm-type">

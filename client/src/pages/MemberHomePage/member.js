@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 function Member(props) {
 
+  const [record, setRecord] = useState(null);
   const navigate = useNavigate();
 
 	const handleLogout = () => {
@@ -18,43 +19,58 @@ function Member(props) {
 		navigate('/login');
   }
 
-    const initialValues = []
-    const [pagedata,setPagedata]=useState(initialValues);
-    //const [emailAddress,setEmailaddress]=useState();
-    const [services,setServices]=useState();
-    const [startTime,setStarttime]=useState();
-    const [endTime, setEndtime]=useState();
-    const [location, setLocation]=useState();
-
   useEffect(() => {
-    axios.get('/all/member')
-    .then((response) => {
-      const data = response.data.details;
-      setPagedata(data);
-      setServices(data[0].services);
-      setStarttime(data[0].startTime);
-      setEndtime(data[0].endTime);
-      setLocation(data[0].location);
-    })
-    .catch((e) => {
-      console.log("123");
-      alert(e.message);
-    });
-  },[]);
+    const auth = JSON.parse(localStorage.getItem("auth"));
+    const emailAddress = auth.employees[0].userName
+    console.log(emailAddress);
+    axios.get(`/records?emailAddress=${emailAddress}`)
+      .then(response => {
+        setRecord(response.data);
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
+
+    if (!record) {
+      return <div className="message-display"><br></br><br></br>
+      <button className="btn btn-danger" style={{float: 'right'}} onClick={handleLogout}>Logout</button>
+      <b>You're not enrolled into any type of service. Request your <b>Health Club Employee</b> to get registered for any of the plan</b><br></br>
+    </div>;
+    }
 
   return (
     
     // {<TreadmillStopwatch />}
    
     <div>
-    <h1>Member Dashboard</h1><br></br>
-      {/* <h2>{emailAddress}</h2> */}
+     {/* <h2>{emailAddress}</h2> */}
       <div>
       <button className="btn btn-danger" style={{float: 'right'}} onClick={handleLogout}>Logout</button>
-      <h3 color='#'>Class Schedule for a week</h3>
+      {/* <h3 color='#'>Class Schedule for a week</h3>
       <img src='https://fitpage.in/wp-content/uploads/2021/10/Article_Banner-1-1.jpg' hegiht="350" width="450" alt="samp"></img>
       <h4>{services} at {location}</h4>
-      <h4>{dateFormat(startTime, "dddd, h:MM TT")} to {dateFormat(endTime, "dddd, h:MM TT")}</h4>
+      <h4>{dateFormat(startTime, "dddd, h:MM TT")} to {dateFormat(endTime, "dddd, h:MM TT")}</h4> */}
+      <div className="record-container">
+      {record.map((record, index) => (
+      <div key={index} className="record-details">
+      <div className="grid-box">
+        <div className="grid-row">
+          <div className="grid-column">Email Address: {record.emailAddress}</div>
+        </div>
+        <div className="grid-row">
+          <div className="grid-column">Service: {record.service}</div>
+        </div>
+        <div className="grid-row">
+          <div className="grid-column">Location: {record.location}</div>
+        </div>
+        <div className="grid-row">
+          <div className="grid-column">Your service is valid from {dateFormat(record.startDate, "dd/mm/yyyy, h:MM TT")} to {dateFormat(record.endDate, "dd/mm/yyyy, h:MM TT")}</div>
+        </div>
+      </div>
+    </div>
+      ))}
       </div>
       {/* <div class="activities">
         <div >
@@ -87,6 +103,7 @@ function Member(props) {
       <Cycling />
       </div>
     </div>
+  </div>
 
   );
 }

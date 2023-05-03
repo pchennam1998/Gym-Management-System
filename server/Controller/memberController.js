@@ -142,3 +142,18 @@ exports.getMemberSchedule = async (req, res) => {
     }
   };
   
+  exports.getMemberdata = async(req, res) => {
+    const { emailAddress } = req.query;
+    console.log(emailAddress);
+
+      RegInfo.find({ emailAddress }, (err, records) => {
+
+      console.log(records);
+      if (err) {
+        console.error(err);
+        res.status(500).send('Server error');
+      } else {
+        res.json(records);
+      }
+    });
+  }
