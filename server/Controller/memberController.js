@@ -98,16 +98,17 @@ exports.getMemberSchedule = async (req, res) => {
         return res.status(400).json({ msg: 'Invalid member email' });
       }
   
-      const dayActivity = await DayActivityInfo.findOne({ emailAddress: email });
+      //const dayActivity = await DayActivityInfo.findOne({ emailAddress: email });
   
-      if (dayActivity) {
-        return res.status(400).json({ msg: 'User already checked-in' });
-      }
+      // if (dayActivity) {
+      //   return res.status(400).json({ msg: 'User already checked-in' });
+      // }
   
       const newActivity = new DayActivityInfo({
         emailAddress: email,
         checkInTime: new Date(),
-        location: 'San Jose Downtown'
+        location: 'San Jose Downtown',
+        checkType: true
       });
   
       await newActivity.save();
@@ -127,15 +128,18 @@ exports.getMemberSchedule = async (req, res) => {
         return res.status(400).json({ msg: 'Invalid member email' });
       }
   
-      const dayActivity = await DayActivityInfo.findOne({ emailAddress: email });
+      const dayActivity = await DayActivityInfo.findOne({ emailAddress: email, checkType: true });
   
-      if (!dayActivity) {
+      if (dayActivity.checkType == false) {
         return res.status(400).json({ msg: 'User has not checked-in yet' });
       }
+      console.log('$#$#');
+      console.log(dayActivity.checkType);
   
-      dayActivity.checkOutTime = new Date();
-      await dayActivity.save();
-      res.json({ msg: 'User checked-out successfully' });
+        dayActivity.checkOutTime = new Date();
+        dayActivity.checkType = false;
+        await dayActivity.save();
+        res.json({ msg: 'User checked-out successfully' });
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server error');

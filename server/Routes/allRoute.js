@@ -52,4 +52,14 @@ router.post("/bookings", logHoursController.storeLogHours);
 
 router.get("/records", memberController.getMemberdata);
 
+router.post("/barchart", hCMController.barChart);
+
+router.post("/hourschart", hCMController.hoursChart);
+
+// router.get("/analytics/user-location", hCMController.analyticsByLocation);
+
+// router.get("/analytics/classes", hCMController.analyticsByDate);
+
+// router.get("/analytics/enrollment", hCMController.analyticsByWeek);
+
 module.exports = router;

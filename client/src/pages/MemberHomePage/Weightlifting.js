@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import dateFormat from 'dateformat';
 import './member.css';
-function Cycling({ services, location, startTime, endTime }) {
+function Weightlifting({ services, location, startTime, endTime }) {
   const [timer, setTimer] = useState(null);
   const [elapsedTime, setElapsedTime] = useState(0);
 
@@ -47,8 +47,8 @@ function Cycling({ services, location, startTime, endTime }) {
 
   return (
     <div class="activity">
-      <h3>Cycling</h3>
-      <img src='https://www.shutterstock.com/image-photo/concentrated-fit-female-sportswear-dark-260nw-1784418434.jpg' height="150" width="250" alt="Cycling" />
+      <h3>Weightlifting</h3>
+      <img src='https://w7.pngwing.com/pngs/365/988/png-transparent-olympic-weightlifting-computer-icons-weight-training-weightlifting-blue-angle-orange.png' height="150" width="250" alt="Weightlifting" />
       {/* <h4>Service: {services} at {location}</h4> */}
       {/* <h4>{dateFormat(startTime, "dddd, h:MM TT")} to {dateFormat(endTime, "dddd, h:MM TT")}</h4> */}
       <h4>Elapsed Time: {dateFormat(elapsedTime, "MM:ss")} </h4>
@@ -59,4 +59,4 @@ function Cycling({ services, location, startTime, endTime }) {
   );
 }
 
-export default Cycling;
+export default Weightlifting;

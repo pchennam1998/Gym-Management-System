@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import "./hcmember.css";
+import Analytics from './analytics';
+import HoursChart from './hoursChart';
 
 const HCMember = () => {
   const [members, setMembers] = useState([]);
@@ -51,12 +53,17 @@ const HCMember = () => {
   }
 
   const handleCheckin = (member) => {
-	console.log('*********');
-	console.log(member.emailAddress);
+  const updatedStatus = new Map(status);
+  updatedStatus.set(member.emailAddress, true);
+  setStatus(updatedStatus);
 	status.set(member.emailAddress,true);
-	console.log(status.get(member.emailAddress))
-    axios.post('/checkin', { emailAddress: member.emailAddress })
+  const checkinData = {
+    emailAddress: member.emailAddress,
+    checkInTime: new Date()
+  }
+    axios.post('/checkin', checkinData)
       .then(response => {
+        const newCheckinRecord = response.data;
         const updatedMembers = members.map(m => {
           if (m._id === member._id) {
             return { ...m, checkInTime: response.data.checkInTime };
@@ -72,11 +79,17 @@ const HCMember = () => {
   }
 
   const handleCheckout = (member) => {
-	console.log(member.checkInTime);
-	
-	status.set(member.emailAddress,false);
-    axios.post('/checkout', { emailAddress: member.emailAddress })
+    const updatedStatus = new Map(status);
+    updatedStatus.set(member.emailAddress, false);
+    setStatus(updatedStatus);
+	  status.set(member.emailAddress,false);
+    const checkoutData = {
+      emailAddress: member.emailAddress,
+      checkOutTime: new Date()
+    }
+    axios.post('/checkout', checkoutData)
       .then(response => {
+        const newCheckoutRecord = response.data;
         const updatedMembers = members.map(m => {
           if (m._id === member._id) {
             return { ...m, checkOutTime: response.data.checkOutTime };
@@ -106,11 +119,13 @@ const HCMember = () => {
   return (
     <div>
       <button style={{float: 'right'}} className="btn btn-danger" onClick={handleLogout}>Logout</button>
-	  <h3><br></br><b>CHECK-IN/CHECK-OUT Members</b></h3>
+    <div className="page-container">
+    <div className="member-list-container">
+      <div className="nm-member-list">
+      <h3><br></br><b>CHECK-IN/CHECK-OUT Members</b></h3>
       <div className="search-bar">
         <input type="text" placeholder="Search for members to check the time" onChange={handleSearch} />
       </div>
-      <div className="nm-member-list">
         {filteredMembers.map(member => (
           <div key={member._id} className="member-card">
             <div className="member-info">
@@ -128,6 +143,8 @@ const HCMember = () => {
           </div>
         ))}
       </div>
+    </div>
+    <div className="enrollment-container">
 	  <div class="nm-member-list nm-type">
 		<h3><b>Enroll Members/Non members for different Services or Free Trials</b></h3>
 	  <div className="search-bar">
@@ -143,6 +160,14 @@ const HCMember = () => {
         </div>
       </div>
     ))}
+  </div>
+  <div className="analytics-container">
+    <div class='activities'>
+      <Analytics />
+      <HoursChart />
+    </div>
+  </div>
+  </div>
   </div>
     </div>
 	// (member.checkInTime && !member.checkOutTime) &&

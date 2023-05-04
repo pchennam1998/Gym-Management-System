@@ -12,7 +12,10 @@ function TreadmillStopwatch({ services, location }) {
     axios.get('/users')
       .then(response => {
         setMembers(response.data);
-        console.log(members.emailAddress)
+        console.log(response.data);
+        console.log('##@@##');
+        console.log(members.location);
+        console.log(members.emailAddress);
       })
       .catch(error => {
         console.log(error);
@@ -25,14 +28,18 @@ function TreadmillStopwatch({ services, location }) {
 
   const handleStop = async () => {
     if (timer) {
-      const endTime = Date.now();
+      console.log(services);
+      console.log(location);
+      console.log('******');
+      console.log(members.emailAddress);
+      const endTime = new Date();
       setElapsedTime(endTime - timer);
       setTimer(null);
       const startTime = new Date(endTime - elapsedTime);
       const response = await axios.post('/bookings', {
-        emailAddress: members.emailAddress,
-        services: services,
-        location: location,
+        emailAddress: members[0].emailAddress,
+        //services: 'threadmill',
+        location: members[0].location,
         startTime: startTime,
         endTime: endTime,
         timeInterval: dateFormat(elapsedTime, "MM:ss")
@@ -60,7 +67,7 @@ function TreadmillStopwatch({ services, location }) {
     <div class="activity">
       <h3>Treadmill</h3>
       <img src='https://fitpage.in/wp-content/uploads/2021/10/Article_Banner-1-1.jpg' height="150" width="250" alt="Treadmill" />
-      <h4>Service: {services} at {location}</h4>
+      {/* <h4>Service: {services} at {location}</h4> */}
       <h4>Elapsed Time: {dateFormat(elapsedTime, "MM:ss")} </h4>
       <button onClick={handleStart}>Start</button>
       <button onClick={handleStop}>Stop</button>

@@ -3,7 +3,7 @@ import axios from "axios";
 import dateFormat from 'dateformat';
 import TreadmillStopwatch from './TreadmillStopwatch';
 import UseStaircase from './UseStaircase';
-import Cycling from './Cycling';
+import Weightlifting from './Weightlifting';
 import { useNavigate } from "react-router-dom";
 
 
@@ -98,9 +98,12 @@ function Member(props) {
         <button onClick={handleReset}>Reset</button>
       </div></div> */}
       <div class='activities'>
-      <TreadmillStopwatch />
-      <UseStaircase />
-      <Cycling />
+      {record.map((record, index) => (
+      <div>{record.service.includes('threadmill') && <TreadmillStopwatch />}
+      {record.service.includes('staircase') && <UseStaircase />}
+      {record.service.includes('weightlifting') && <Weightlifting />}
+      </div>
+      ))}
       </div>
     </div>
   </div>

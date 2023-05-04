@@ -13,7 +13,6 @@ const LoginSchema = new Schema({
     lastName: {
         type: String,
         required: true
-
     },
     emailAddress:{
         type: String,

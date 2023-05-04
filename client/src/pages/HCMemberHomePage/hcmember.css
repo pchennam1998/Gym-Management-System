@@ -63,6 +63,11 @@
     color: #fff;
   }
 
+  .activities {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
   /* NM Type Member Grid Block */
   .nm-member-grid {
     display: grid;
@@ -178,3 +183,93 @@
   h3 {
     text-align: center;
   }
+
+  .page-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .member-list-container {
+    width: 50%;
+    padding-right: 0px;
+  }
+  
+  .enrollment-container {
+    width: 50%;
+    padding-left: 0px;
+  }
+  
+  .analytics-container {
+    width: 100%;
+    margin-top: 10px;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #98c9d4;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 0px;
+  }
+  
+  .activities {
+    width: 1500%;
+    height: 1500%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .activities .chart {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .activities .chart h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .activities .chart .bar {
+    width: 100%;
+    height: 100px;
+    background-color: #ddd;
+    border-radius: 5px;
+    position: relative;
+    margin-bottom: 10px;
+  }
+  
+  .activities .chart .bar .progress {
+    height: 100%;
+    background-color: #00bfff;
+    border-radius: 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: width 1s ease-in-out;
+  }
+  
+  .activities .chart .bar .label {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 10px;
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .activities .chart .bar .value {
+    position: absolute;
+    top: 100%;
+    transform: translateY(-50%);
+    right: 10px;
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  

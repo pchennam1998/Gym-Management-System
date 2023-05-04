@@ -8,7 +8,7 @@ const EnrollForm = () => {
   const searchParams = new URLSearchParams(location1.search);
   const emailAddress = searchParams.get('email');
   const [service, setService] = useState('threadmill');
-  const [location, setLocation] = useState('New York');
+  const [location, setLocation] = useState('Santa Clara');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [checked, setChecked] = useState(false);
