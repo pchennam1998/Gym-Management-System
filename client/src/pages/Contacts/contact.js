@@ -1,5 +1,5 @@
 import React from 'react';
-import './contact.css';
+import './contact1.css';
 
 function Contact() {
   const box1Data = [

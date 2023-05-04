@@ -1,5 +1,5 @@
 import React from 'react';
-import './service.css';
+import './service1.css';
 
 function CardGrid() {
   const cards = [

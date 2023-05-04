@@ -1,5 +1,5 @@
 import React from 'react';
-import './pricing.css';
+import './pricing1.css';
 
 function Pricing() {
   const box1Data = [

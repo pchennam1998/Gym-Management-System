@@ -3,13 +3,20 @@
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
     padding: 20px;
-    background-color: #b2cfb4;
+    background-color: white;
   }
   
   .card {
     position: relative;
     overflow: hidden;
     border: 1px solid #ccc;
+    transition: transform 0.3s ease-out;
+  }
+  .card:hover {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    transform: translateY(-5px);
   }
   
   .card img {

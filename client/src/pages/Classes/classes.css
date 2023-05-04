@@ -10,12 +10,18 @@
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(4, auto);
     gap: 10px;
-    background-color: #b2cfb4;
+    background-color: white;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+    position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease-out;
   }
-  
+  .grid-block:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.3);
+  }
   .grid-block h2 {
     grid-column: 1 / -1;
     text-align: center;
