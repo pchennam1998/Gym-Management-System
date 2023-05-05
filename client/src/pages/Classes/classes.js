@@ -16,7 +16,7 @@ function Clsses() {
       endTime: new Date('T10:00:00')
     },
     {
-		location: 'San Jose Downtown',
+		location: 'Sant Jose',
 		services: 'Weight Lifting',
 		classDay: 'Tuesday, Thursday and Saturday',
 		startTime: new Date('T10:00:00'),
@@ -42,9 +42,8 @@ function Clsses() {
       {exercise &&
         <div className="grid-block">
           <h2><b>{exercise.services}</b></h2>
-          <p><b>Class Days:</b> {exercise.classDay}</p><br></br>
-          <p><b>Login Time:</b> {exercise.startTime ? exercise.startTime.toLocaleString() : '-'}</p><br></br>
-          <p><b>Logout Time:</b> {exercise.endTime ? exercise.endTime.toLocaleString() : '-'}</p>
+          <p><b>Class Days:</b> Every Weekday </p><br></br>
+          <p><b>In/Out Time:</b> 06:00 AM - 10:00 PM</p><br></br>
         </div>
       }
     </div>
