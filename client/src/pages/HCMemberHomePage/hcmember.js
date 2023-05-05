@@ -161,13 +161,14 @@ const HCMember = () => {
       </div>
     ))}
   </div>
+  </div>
   <div className="analytics-container">
     <div class='activities'>
       <Analytics />
       <HoursChart />
     </div>
   </div>
-  </div>
+  
   </div>
     </div>
 	// (member.checkInTime && !member.checkOutTime) &&

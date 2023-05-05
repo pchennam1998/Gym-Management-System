@@ -46,7 +46,7 @@ function Weightlifting({ services, location, startTime, endTime }) {
   };
 
   return (
-    <div class="activity">
+    <div align="center">
       <h3>Weightlifting</h3>
       <img src='https://w7.pngwing.com/pngs/365/988/png-transparent-olympic-weightlifting-computer-icons-weight-training-weightlifting-blue-angle-orange.png' height="150" width="250" alt="Weightlifting" />
       {/* <h4>Service: {services} at {location}</h4> */}

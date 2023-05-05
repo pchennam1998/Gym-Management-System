@@ -88,12 +88,28 @@
 .activities {
   display: flex;
   flex-wrap: wrap;
+  margin: 20px;
+  padding: 10px;
 }
 
-.activities > div {
-  width: 33.33%;
+.activities {
+  width: 100%;
+  margin: 20px;
   padding: 10px;
-  box-sizing: border-box;
+  background-color: white;
+  color: black;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  width: 80%;
+  display: flex;
+    flex-wrap: wrap;
+}
+.activity:hover {
+  background-color: whitesmoke;
+  color: black;
+  cursor: pointer;
+  transform: scale(1.1);
 }
 .activity{
   margin: 20px;
@@ -123,6 +139,11 @@
 padding: 20px;
 box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 margin: 0 10px;
+}
+.rowC {
+  display:flex; 
+  flex-direction:row;
+  padding: 5px 5px 5px 5px;
 }
 /* Add any other styles you need here */
 body {

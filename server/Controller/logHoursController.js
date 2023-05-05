@@ -3,73 +3,65 @@ const GenInfo = require('../models/genInfoSchema');
 const BookingInfo = require('../models/bookingsSchema');
 
 exports.logInHoursMember = async (req, res) => {
-
-    try{
-        resExercise = req.body.services
-        resLocation = req.body.location
-
-        const allData = await GenInfo.find()
-
-        while(allData.location == resLocation) {
-            const dataloginHours = new GenInfo({
-                services: services,
-                details: details,
-                classDay: classDay,
-                startTime: Date.now(),
-                endTime: endTime,
-                pricing: pricing,
-                contact: contact,
-                location: location
-              });
-          }
-
-        console.log(Date.now());
-
-        if(allData == 'server error'){
-            return res.status(500).send("Server error")
-        }
-        return res.json(allData)
-        
-    }
-    catch(err){
-        return res.status(500).send("Server error")
-    }
+    try {
+        const newBooking = new BookingInfo({
+          email: req.body.email,
+          service: req.body.service,
+          location: req.body.location,
+          startTime: req.body.startTime
+        });
+        console.log(req.body);
+    
+        const savedBooking = await newBooking.save();
+        res.status(201).json(savedBooking);
+        res.status(500).send('Saved successfully');
+      } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+      }
 }
 
 exports.logOutHoursMember = async (req, res) => {
 
-    try{
-        resExercise = req.body.services
-        resLocation = req.body.location
-
-
-        const allData = await GenInfo.find()
-
-        while(allData.location == resLocation) {
-            const datalogoutHours = new GenInfo({
-                services: services,
-                details: details,
-                classDay: classDay,
-                startTime: startTime,
-                endTime: Date.now(),
-                pricing: pricing,
-                contact: contact,
-                location: location
-              });
-          }
-        
-        console.log(Date.now());
-
-        if(allData == 'server error'){
-            return res.status(500).send("Server error")
-        }
-        return res.json(allData)
-        
+    const { emailAddress } = req.params;
+    const { endTime, timeInterval } = req.body;
+  
+    try {
+      const booking = await BookingInfo.findOneAndUpdate(
+        { emailAddress, endTime: { $exists: false } },
+        { 
+            endTime, 
+            timeInterval: msToTime(endTime - req.body.startTime) 
+        },
+        { new: true }
+      );
+  
+      if (!booking) {
+        return res.status(404).json({ msg: "Booking not found or already ended" });
+      }
+  
+      return res.status(200).json(booking);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Server Error");
     }
-    catch(err){
-        return res.status(500).send("Server error")
-    }
-}
+  }
+
+  function msToTime(duration) {
+    const milliseconds = parseInt((duration % 1000) / 100);
+    const seconds = Math.floor((duration / 1000) % 60);
+    const minutes = Math.floor((duration / (1000 * 60)) % 60);
+    const hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+    const days = Math.floor(duration / (1000 * 60 * 60 * 24));
+  
+    let result = "";
+    if (days > 0) result += days + "d ";
+    if (hours > 0) result += hours + "h ";
+    if (minutes > 0) result += minutes + "m ";
+    if (seconds > 0) result += seconds + ".";
+    if (milliseconds > 0) result += milliseconds;
+    return result;
+  }
 
 exports.storeLogHours = async (req, res) => {
 

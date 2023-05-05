@@ -6,65 +6,89 @@ import axios from "axios";
 function TreadmillStopwatch({ services, location }) {
   const [timer, setTimer] = useState(null);
   const [elapsedTime, setElapsedTime] = useState(0);
-  const [members, setMembers] = useState([]);
+  const [record, setRecord] = useState([]);
+  const [email, setEmail] = useState();
 
   useEffect(() => {
-    axios.get('/users')
+    const auth = JSON.parse(localStorage.getItem("auth"));
+    const emailAddress = auth.employees[0].userName
+    console.log(emailAddress);
+    setEmail(emailAddress);
+    axios.get(`/records?emailAddress=${emailAddress}`)
       .then(response => {
-        setMembers(response.data);
-        console.log(response.data);
-        console.log('##@@##');
-        console.log(members.location);
-        console.log(members.emailAddress);
+        setRecord(response.data);
       })
       .catch(error => {
         console.log(error);
       });
+    const savedTimer = localStorage.getItem("timer");
+    const savedElapsedTime = localStorage.getItem("elapsedTime");
+    if (savedTimer && savedElapsedTime) {
+      const elapsedTime = Date.now() - parseInt(savedTimer, 10);
+      setTimer(parseInt(savedTimer, 10));
+      setElapsedTime(parseInt(savedElapsedTime, 10) + elapsedTime);
+    }
   }, []);
 
   const handleStart = () => {
-    setTimer(Date.now());
+    const startTime = Date.now();
+    const auth = JSON.parse(localStorage.getItem("auth"));
+    const emailAddress = auth.employees[0].userName
+    setTimer(startTime);
+    localStorage.setItem("timer", startTime);
+    const bookingData = {
+      emailAddress,
+      location,
+      services,
+      startTime
+    };
+    axios.post('/bookings', bookingData)
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
-  const handleStop = async () => {
-    if (timer) {
-      console.log(services);
-      console.log(location);
-      console.log('******');
-      console.log(members.emailAddress);
-      const endTime = new Date();
-      setElapsedTime(endTime - timer);
-      setTimer(null);
-      const startTime = new Date(endTime - elapsedTime);
-      const response = await axios.post('/bookings', {
-        emailAddress: members[0].emailAddress,
-        //services: 'threadmill',
-        location: members[0].location,
-        startTime: startTime,
-        endTime: endTime,
-        timeInterval: dateFormat(elapsedTime, "MM:ss")
+  const handleStop = () => {
+    const endTime = Date.now();
+    const timeInterval = (endTime - timer);
+    const auth = JSON.parse(localStorage.getItem("auth"));
+    const emailAddress = auth.employees[0].userName;
+    console.log(timeInterval);
+    console.log("$#$#$#$#")
+    
+    axios.post(`/bookings/${emailAddress}`, {endTime, timeInterval})
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.log(error);
       });
-      console.log(response.data);
-    }
-  };
+  };  
 
   const handleReset = () => {
     setTimer(null);
     setElapsedTime(0);
+    localStorage.removeItem("timer");
+    localStorage.removeItem("elapsedTime");
   };
 
   useEffect(() => {
     let interval;
     if (timer) {
       interval = setInterval(() => {
-        setElapsedTime(Date.now() - timer);
+        //const elapsedTime = Date.now() - timer;
+        setElapsedTime(prevElapsedTime => prevElapsedTime + elapsedTime);
+        localStorage.setItem("elapsedTime", prevElapsedTime => prevElapsedTime + elapsedTime);
       }, 1);
     }
     return () => clearInterval(interval);
   }, [timer]);
 
   return (
-    <div class="activity">
+    <div align="center">
       <h3>Treadmill</h3>
       <img src='https://fitpage.in/wp-content/uploads/2021/10/Article_Banner-1-1.jpg' height="150" width="250" alt="Treadmill" />
       {/* <h4>Service: {services} at {location}</h4> */}

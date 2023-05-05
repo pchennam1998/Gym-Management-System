@@ -6,7 +6,6 @@ import UseStaircase from './UseStaircase';
 import Weightlifting from './Weightlifting';
 import { useNavigate } from "react-router-dom";
 
-
 function Member(props) {
 
   const [record, setRecord] = useState(null);
@@ -97,14 +96,18 @@ function Member(props) {
         <button onClick={handleStop}>Stop</button>
         <button onClick={handleReset}>Reset</button>
       </div></div> */}
-      <div class='activities'>
+
+<div className="grid-box">
+        <div className="grid-row">
       {record.map((record, index) => (
-      <div>{record.service.includes('threadmill') && <TreadmillStopwatch />}
+      <div >{record.service.includes('threadmill') && <TreadmillStopwatch services={record.service} location={record.location}/>}
       {record.service.includes('staircase') && <UseStaircase />}
       {record.service.includes('weightlifting') && <Weightlifting />}
       </div>
       ))}
       </div>
+      </div>
+      
     </div>
   </div>
 

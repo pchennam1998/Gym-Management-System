@@ -34,8 +34,8 @@ function AnalyticsDashboard() {
         datasets: [{
           label: 'Enrollments',
           data: chartData?.map((data) => data.value),
-          backgroundColor: 'rgba(255, 99, 132, 0.5)',
-          borderColor: 'rgba(255, 99, 132, 1)',
+          backgroundColor: 'rgba(2, 19, 1, 1)',
+          borderColor: 'rgba(25, 9, 132, 1)',
           borderWidth: 1,
         }]
       }}

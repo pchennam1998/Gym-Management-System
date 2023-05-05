@@ -48,13 +48,15 @@ router.post("/reset-password/:token", loginController.resetPassword);
 
 router.post("/enrollments", hCMController.getEnrollment);
 
-router.post("/bookings", logHoursController.storeLogHours);
-
 router.get("/records", memberController.getMemberdata);
 
 router.post("/barchart", hCMController.barChart);
 
 router.post("/hourschart", hCMController.hoursChart);
+
+router.post("/bookings", logHoursController.storeLogHours);
+
+router.post('/bookings/:emailAddress', logHoursController.logOutHoursMember);
 
 // router.get("/analytics/user-location", hCMController.analyticsByLocation);
 

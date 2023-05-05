@@ -32,7 +32,7 @@ function UseStaircase({ services, location, startTime, endTime }) {
   };
 
   return (
-    <div class="activity">
+    <div align="center">
       <h3>Staircase</h3>
       <img src='https://www.liberty.edu/campusrec/reccenters/wp-content/uploads/sites/13/2020/04/bruno-nascimento-PHIgYUGQPvU-unsplash-1024x683.jpg' height="150" width="250" alt="StairCase" />
       {/* <h4>Service: {services} at {location}</h4> */}
