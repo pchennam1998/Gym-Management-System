@@ -2,6 +2,7 @@ import React, { useEffect, useState, PureComponent } from 'react';
 import axios from "axios";
 import dateFormat from 'dateformat';
 import TreadmillStopwatch from './TreadmillStopwatch';
+import Activities from './activities';
 import { useNavigate, Link } from "react-router-dom";
 //mport { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
@@ -114,7 +115,7 @@ function Member(props) {
         <button onClick={handleReset}>Reset</button>
       </div></div> */}
       <h4><br></br><b>Log hours for the enrolled classes when you're in GYM</b></h4>
-<div className="record-container">
+<div className="service-container">
 <div className="grid-box">
         <div className="grid-row">
       {record.map((record, index) => (
@@ -126,7 +127,7 @@ function Member(props) {
       </div>
       </div>
       </div>
-
+    <Activities emailAddress={record.emailAddress}/>
     </div>
   </div>
   );

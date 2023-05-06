@@ -8,6 +8,7 @@ function TreadmillStopwatch({ services, location, image }) {
   const [elapsedTime, setElapsedTime] = useState(0);
   const [record, setRecord] = useState([]);
   const [email, setEmail] = useState();
+  const [stopwatchStatus, setStopwatchStatus] = useState();
 
   useEffect(() => {
     const auth = JSON.parse(localStorage.getItem("auth"));
@@ -31,6 +32,7 @@ function TreadmillStopwatch({ services, location, image }) {
   }, [timer]);
 
   const handleStart = () => {
+    setStopwatchStatus("Started");
     const startTime = Date.now();
     const auth = JSON.parse(localStorage.getItem("auth"));
     const emailAddress = auth.employees[0].userName
@@ -52,6 +54,7 @@ function TreadmillStopwatch({ services, location, image }) {
   };
 
   const handleStop = () => {
+    setStopwatchStatus("Stopped");
     const endTime = Date.now();
     const diff = Math.abs(endTime - timer);
     const timeInterval=Math.floor((diff/1000));
@@ -71,6 +74,7 @@ function TreadmillStopwatch({ services, location, image }) {
   };  
 
   const handleReset = () => {
+    setStopwatchStatus("Reset");
     setTimer(null);
     setElapsedTime(0);
     localStorage.removeItem("timer");
@@ -99,6 +103,7 @@ function TreadmillStopwatch({ services, location, image }) {
       <button onClick={handleStart}>Start</button>
       <button onClick={handleStop}>Stop</button>
       <button onClick={handleReset}>Reset</button>
+      <div>Stop Watch {stopwatchStatus}</div>
     </div>
   );
 }

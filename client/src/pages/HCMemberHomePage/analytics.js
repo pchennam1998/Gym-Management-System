@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Bar } from 'react-chartjs-2';
+import { Bar, ResponsiveContainer } from 'react-chartjs-2';
 import Chart from 'chart.js/auto';
 import { CategoryScale } from 'chart.js';
 
@@ -123,7 +123,6 @@ function AnalyticsDashboard() {
       <select value={location} onChange={handleLocationChange} style={{ fontSize: 16, fontFamily: 'Arial', padding: '10px', borderRadius: '5px', border: 'none', backgroundColor: '#f2f2f2' }}>
         <option value="San Jose">San Jose</option>
         <option value="Santa Clara">Santa Clara</option>
-        <option value="New York">New York</option>
       </select>
       <select value={timeRange} onChange={handleTimeRangeChange}>
             <option value={"1 day"}>1 day</option>

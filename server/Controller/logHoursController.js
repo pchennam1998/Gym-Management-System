@@ -95,3 +95,12 @@ exports.storeLogHours = async (req, res) => {
         return res.status(500).send("Server error")
     }
 }
+
+exports.getBookings = async(req, res) => {
+  try {
+    const bookings = await BookingInfo.find({ emailAddress: req.params.emailAddress });
+    res.json(bookings);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+}

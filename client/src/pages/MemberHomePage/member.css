@@ -177,6 +177,18 @@ body {
   background-color: whitesmoke;
 }
 
+.service-container {
+  display: flex;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 10px;
+  background-color: whitesmoke;
+  width: 60%;
+  place-items: center; 
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
 .record-item {
   width: 33.33%;
   padding: 10px;

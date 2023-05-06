@@ -56,6 +56,8 @@ router.post("/hourschart", hCMController.hoursChart);
 
 router.post("/bookings", logHoursController.storeLogHours);
 
+router.get("/api/activities", logHoursController.getBookings);
+
 router.post('/bookings/:emailAddress', logHoursController.logOutHoursMember);
 
 // router.get("/analytics/user-location", hCMController.analyticsByLocation);
