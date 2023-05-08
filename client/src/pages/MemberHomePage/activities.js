@@ -1,78 +1,79 @@
 import React, { useState, useEffect } from 'react';
-import { Pie } from 'react-chartjs-2';
-import { PieChart } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend } from 'recharts';
 import axios from 'axios';
 
-const Activities = (emailAddress) => {
-  const [chartData, setChartData] = useState({});
+const Activities = ({ emailAddress }) => {
+  const [chartData, setChartData] = useState([]);
+  const [timePeriod, setTimePeriod] = useState('7');
 
   useEffect(() => {
-    const fetchData = async () => {
+    async function fetchData() {
       try {
-        const res = await axios.get('/api/activities/', { emailAddress }); // Replace with your API endpoint
-        const bookings = res.data;
-
-        const services = {};
-        const totalHours = {};
-
-        bookings.forEach(booking => {
-          if (services[booking.services]) {
-            services[booking.services]++;
-          } else {
-            services[booking.services] = 1;
-          }
-
-          const hours = calculateHours(booking.startTime, booking.endTime);
-          if (totalHours[booking.services]) {
-            totalHours[booking.services] += hours;
-          } else {
-            totalHours[booking.services] = hours;
-          }
-        });
-
-        setChartData({
-          labels: Object.keys(services),
-          datasets: [
-            {
-              label: 'No of Hours',
-              data: Object.values(totalHours),
-              backgroundColor: [
-                '#FF6384',
-                '#36A2EB',
-                '#FFCE56',
-                '#32CD32',
-                '#8B008B',
-                '#FF4500',
-              ],
-            },
-          ],
-        });
+        const dateRange = getDateRange();
+        console.log(dateRange);
+        console.log("546547548")
+        const response = await axios.post('/detailschart', { emailAddress, timePeriod });
+        setChartData(response.data.data);
+        console.log(response.length);
+        console.log("342412489023");
       } catch (error) {
         console.error(error);
       }
-    };
-
+    }
     fetchData();
-  }, []);
+  }, [emailAddress, timePeriod]);
 
-  const calculateHours = (startTime, endTime) => {
-    const diff = Math.abs(new Date(endTime) - new Date(startTime));
-    return Math.floor(diff / 1000 / 60 / 60);
+  const getDateRange = () => {
+    const endDate = new Date();
+    let startDate = new Date();
+
+    switch (timePeriod) {
+      case '1day':
+        startDate.setDate(endDate.getDate() - 1);
+        break;
+      case '1week':
+        startDate.setDate(endDate.getDate() - 7);
+        break;
+      case '1month':
+        startDate.setMonth(endDate.getMonth() - 1);
+        break;
+      case '90days':
+        startDate.setDate(endDate.getDate() - 90);
+        break;
+      default:
+        startDate = null;
+    }
+
+    return startDate ? { startDate, endDate } : null;
+  };
+
+  const handleTimePeriodChange = (event) => {
+    setTimePeriod(event.target.value);
   };
 
   return (
     <div>
-    <PieChart width={400} height={400}>
-      <Pie 
-      data={chartData} 
-      startAngle={180}
-      endAngle={0}
-      cx="50%"
-      cy="50%"
-      outerRadius={80}
-      fill="#8884d8"
-      label/>
-    </PieChart>
+      <h2>Number of Hours spent per service</h2>
+      <div>
+        <label htmlFor="time-period-select">Select time period:</label>
+        <select id="time-period-select" value={timePeriod} onChange={handleTimePeriodChange}>
+          <option label= "1 day" value="1">1 day</option>
+          <option label= "1 week" value="7">1 week</option>
+          <option label= "1 month" value="30">1 month</option>
+          <option label= "90 days" value="90">90 days</option>
+        </select>
+      </div>
+      {chartData.length ? (
+        <BarChart width={800} height={400} data={chartData}>
+          <XAxis dataKey="label" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Bar dataKey="value" fill="#b2cfb4" />
+        </BarChart>
+      ) : (
+        <p>Loading chart...</p>
+      )}
     </div>
   );
 };

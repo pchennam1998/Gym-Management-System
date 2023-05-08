@@ -52,6 +52,8 @@ router.get("/records", memberController.getMemberdata);
 
 router.post("/barchart", hCMController.barChart);
 
+router.post("/detailschart", logHoursController.detailsChart)
+
 router.post("/hourschart", hCMController.hoursChart);
 
 router.post("/bookings", logHoursController.storeLogHours);
@@ -60,6 +62,7 @@ router.get("/api/activities", logHoursController.getBookings);
 
 router.post('/bookings/:emailAddress', logHoursController.logOutHoursMember);
 
+router.get('/memberbookings/:emailAddress', logHoursController.getMemberRecords);
 // router.get("/analytics/user-location", hCMController.analyticsByLocation);
 
 // router.get("/analytics/classes", hCMController.analyticsByDate);

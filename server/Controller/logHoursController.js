@@ -97,10 +97,69 @@ exports.storeLogHours = async (req, res) => {
 }
 
 exports.getBookings = async(req, res) => {
+  const { emailAddress } = req.query;
+  console.log(emailAddress);
+
+    BookingInfo.find({ emailAddress }, (err, records) => {
+
+    console.log(records);
+    if (err) {
+      console.error(err);
+      res.status(500).send('Server error');
+    } else {
+      res.json(records);
+    }
+  });
+}
+
+exports.getMemberRecords = async(req, res) => {
+  const { emailAddress } = req.query;
+  console.log(emailAddress);
+
+  BookingInfo.find({ emailAddress }, (err, records) => {
+
+    console.log(records);
+    if (err) {
+      console.error(err);
+      res.status(500).send('Server error');
+    } else {
+      res.json(records);
+    }
+  });
+}
+
+exports.detailsChart = async(req, res) => {
   try {
-    const bookings = await BookingInfo.find({ emailAddress: req.params.emailAddress });
-    res.json(bookings);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+    const { emailAddress, timePeriod } = req.body;
+
+    console.log(timePeriod);
+    console.log("12902763433");
+    let startDate = new Date();
+    startDate.setDate(startDate.getDate() - timePeriod);
+
+    const records = await BookingInfo.aggregate([
+      {
+        $match: {
+          emailAddress,
+          startTime: { $gte: startDate }
+        },
+      },
+      {
+        $group: {
+          _id: '$services',
+          totalHours: { $sum: { $divide: [{ $subtract: ['$endTime', '$startTime'] }, 1000 * 60 * 60] } }
+        },
+      },
+    ]);
+    const chartData = records.map(({ _id, totalHours }) => ({
+      label: _id,
+      value: totalHours.toFixed(2),
+    }));
+
+    console.log(chartData);
+    return res.json({ data: chartData });
+  } catch(error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Internal Server Error' });
   }
 }

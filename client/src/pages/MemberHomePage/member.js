@@ -36,8 +36,6 @@ function Member(props) {
       });
   }, []);
 
-
-
     if (!record) {
       return <div className="message-display"><br></br><br></br>
       <button className="btn btn-danger" style={{float: 'right'}} onClick={handleLogout}>Logout</button>
@@ -64,6 +62,7 @@ function Member(props) {
         </div>
       </div>
       </div>
+      <Activities emailAddress={email}/>
       {/* <h3 color='#'>Class Schedule for a week</h3>
       <img src='https://fitpage.in/wp-content/uploads/2021/10/Article_Banner-1-1.jpg' hegiht="350" width="450" alt="samp"></img>
       <h4>{services} at {location}</h4>
@@ -127,7 +126,6 @@ function Member(props) {
       </div>
       </div>
       </div>
-    <Activities emailAddress={record.emailAddress}/>
     </div>
   </div>
   );
