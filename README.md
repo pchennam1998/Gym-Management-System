@@ -33,7 +33,7 @@
 • Feedback<br /> 
 
 # Project Board
-Project Board is available [here](https://github.com/gopinathsjsu/team-project-team-two0owt/projects?query=is%3Aopen)
+Project Board is available [here](https://github.com/orgs/gopinathsjsu/projects/84/views/2)
 
 # Sprint Sheet
 Below is the link to Sprint sheet along with the Burndown charts.<br />

@@ -1,6 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { BarChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Bar } from 'recharts';
+// import { BarChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Bar } from 'recharts';
+// import { AreaChart, XAxis, YAxis, CartesianGrid, Tooltip, Area } from 'recharts';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Filler,
+  Legend,
+} from 'chart.js';
+import { Line } from 'react-chartjs-2';
+import { faker } from '@faker-js/faker';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Filler,
+  Legend
+);
 
 function HoursChart() {
   const [chartData, setChartData] = useState(null);
@@ -18,6 +43,21 @@ function HoursChart() {
     }
     fetchData();
   }, [location, timePeriod]);
+
+  const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+
+const data = {
+  labels,
+  datasets: [
+    {
+      fill: true,
+      label: 'Dataset 2',
+      data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
+      borderColor: 'rgb(53, 162, 235)',
+      backgroundColor: 'rgba(53, 162, 235, 0.5)',
+    },
+  ],
+};
 
   const handleLocationChange = (event) => {
     setLocation(event.target.value);
@@ -44,14 +84,14 @@ function HoursChart() {
         </select>
       </div>
       {chartData ? (
-      <BarChart width={800} height={400} data={chartData}>
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="hour" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Bar dataKey="visitors" stackId="a" fill="#8884d8" />
-      </BarChart>
+        <Line data={data} />
+    //   <AreaChart width={600} height={400} data={chartData}>
+    //   <XAxis dataKey="hour" />
+    //   <YAxis />
+    //   <CartesianGrid strokeDasharray="3 3" />
+    //   <Tooltip />
+    //   <Area type="monotone" dataKey="visitors" stroke="#8884d8" fill="#8884d8" />
+    // </AreaChart>
       ) : (
         <div>Loading...</div>
       )}
