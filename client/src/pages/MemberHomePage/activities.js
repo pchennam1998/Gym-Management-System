@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, Label } from 'recharts';
 import axios from 'axios';
 
 const Activities = ({ emailAddress }) => {
@@ -65,8 +65,12 @@ const Activities = ({ emailAddress }) => {
       </div>
       {chartData.length ? (
         <BarChart width={800} height={400} data={chartData}>
-          <XAxis dataKey="label" />
-          <YAxis />
+        <XAxis dataKey="label">
+          <Label value="Classes" position="bottom" />
+        </XAxis>
+        <YAxis>
+          <Label value="Hours" angle={-90} position="insideLeft" />
+        </YAxis>
           <Tooltip />
           <Legend />
           <Bar dataKey="value" fill="#b2cfb4" />

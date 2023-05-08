@@ -54,6 +54,12 @@ router.post("/barchart", hCMController.barChart);
 
 router.post("/detailschart", logHoursController.detailsChart)
 
+router.post("/enrollmentchart", logHoursController.enrollmentChart)
+
+router.post("/hourlychart", hCMController.hourlyChart);
+
+router.post("/visitors", hCMController.visitorsByHour);
+
 router.post("/hourschart", hCMController.hoursChart);
 
 router.post("/bookings", logHoursController.storeLogHours);

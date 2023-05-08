@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const GenInfo = require('../models/genInfoSchema'); 
 const BookingInfo = require('../models/bookingsSchema');
+const ActivityInfo = require('../models/regClassSchema');
 
 exports.logInHoursMember = async (req, res) => {
     try {
@@ -154,6 +155,41 @@ exports.detailsChart = async(req, res) => {
     const chartData = records.map(({ _id, totalHours }) => ({
       label: _id,
       value: totalHours.toFixed(2),
+    }));
+
+    console.log(chartData);
+    return res.json({ data: chartData });
+  } catch(error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Internal Server Error' });
+  }
+}
+
+
+exports.enrollmentChart = async(req, res) => {
+  try {
+    const { location, timePeriod } = req.body;
+
+    let startDate = new Date();
+    startDate.setDate(startDate.getDate() - timePeriod);
+
+    const records = await ActivityInfo.aggregate([
+      {
+        $match: {
+          location,
+          startDate: { $gte: startDate, $lte: new Date() }
+        },
+      },
+      {
+        $group: {
+          _id: '$service',
+          count: { $sum: 1 },
+        },
+      },
+    ]);
+    const chartData = records.map(({ _id, count }) => ({
+      label: _id,
+      value: count,
     }));
 
     console.log(chartData);

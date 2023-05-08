@@ -4,6 +4,7 @@ import axios from "axios";
 import "./hcmember.css";
 import Analytics from './analytics';
 import HoursChart from './hoursChart';
+import AllStats from './allstats';
 
 const HCMember = () => {
   const [members, setMembers] = useState([]);
@@ -63,7 +64,6 @@ const HCMember = () => {
   }
     axios.post('/checkin', checkinData)
       .then(response => {
-        const newCheckinRecord = response.data;
         const updatedMembers = members.map(m => {
           if (m._id === member._id) {
             return { ...m, checkInTime: response.data.checkInTime };
@@ -89,7 +89,6 @@ const HCMember = () => {
     }
     axios.post('/checkout', checkoutData)
       .then(response => {
-        const newCheckoutRecord = response.data;
         const updatedMembers = members.map(m => {
           if (m._id === member._id) {
             return { ...m, checkOutTime: response.data.checkOutTime };
@@ -113,12 +112,22 @@ const HCMember = () => {
     nonmember.emailAddress.toLowerCase().includes(nsearchTerm.toLowerCase())
   );
 
-//   const MTypeMembers = filteredMembers.filter(member => member.type === "M");
-//   const NMTypeMembers = filteredMembers.filter(member => member.type === "NM");
-
   return (
     <div>
-      <button style={{float: 'right'}} className="btn btn-danger" onClick={handleLogout}>Logout</button>
+      <div>
+      <button style={{float: 'right'}} className="btn btn-danger" onClick={handleLogout}>Logout</button><br></br><br></br>
+      </div>
+      <div>
+        <div className="analytics-container">
+          <Analytics />
+        </div>
+        <div className="stats-container">
+          <AllStats />
+        </div>
+        <div className="analytics-container">
+          <HoursChart />
+        </div>
+      </div>
     <div className="page-container">
     <div className="member-list-container">
       <div className="nm-member-list">
@@ -162,13 +171,7 @@ const HCMember = () => {
     ))}
   </div>
   </div>
-  <div className="analytics-container">
-    <div class='activities'>
-      <Analytics />
-      <HoursChart />
-    </div>
-  </div>
-  
+ <br></br>
   </div>
     </div>
 	// (member.checkInTime && !member.checkOutTime) &&

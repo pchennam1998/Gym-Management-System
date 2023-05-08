@@ -193,3 +193,82 @@ exports.hoursChart = async(req, res) => {
 //     res.status(500).json({ message: 'Server Error' });
 //   }
 // }
+
+exports.hourlyChart = async (req, res) => {
+  const { location, timePeriod } = req.body;
+
+  try {
+    // Get today's date and the start and end time for the day
+    const today = new Date();
+    const startTime = new Date(today.getFullYear(), today.getMonth(), today.getDate()-timePeriod);
+    const endTime = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
+    console.log(startTime + "  -  " + endTime);
+
+    // Query the database for day activities with the specified location and checkInTime between start and end time
+    const result = await dayActivity.aggregate([
+      {
+        $match: {
+          location,
+          checkOutTime: { $gte: startTime, $lt: endTime }
+        }
+      },
+      {
+        $group: {
+          _id: { $dateToString: { format: '%Y-%m-%d', date: '$checkOutTime' } },
+          totalTime: { $sum: { $divide: [{ $subtract: ['$checkOutTime', '$checkInTime'] }, 1000 * 60 * 60] } }
+        }
+      }
+    ]);
+
+    // Format the data for the chart
+    let totalTime = 0;
+    const chartData = result.map((data) => {
+      totalTime += data.totalTime;
+      return {
+        totalTime: data.totalTime.toFixed(2),
+      };
+    });
+
+    console.log(chartData);
+    return res.json({ totalTime: totalTime.toFixed(2) });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+}
+
+exports.visitorsByHour = async (req, res) => {
+  const { location, timePeriod} = req.body;
+  const today = new Date();
+  const dayStart = new Date(today.getFullYear(), today.getMonth(), today.getDate()-timePeriod);
+  dayStart.setHours(0, 0, 0, 0);
+  const dayEnd = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  dayEnd.setHours(23, 59, 59, 999);
+
+  console.log(dayStart + "  -  " + dayEnd + "  -  " + location + "  -  " + timePeriod);
+
+  try {
+    const activity = await dayActivity.find({
+      location,
+      checkInTime: { $gte: dayStart, $lte: dayEnd },
+      checkOutTime: { $gte: dayStart, $lte: dayEnd },
+    });
+    
+    const visitorsByHour = new Array(24).fill(0);
+
+      activity.forEach((activity) => {
+      const checkInHour = activity.checkInTime.getHours();
+      const checkOutHour = activity.checkOutTime.getHours();
+      for (let hour = checkInHour; hour <= checkOutHour; hour++) {
+        visitorsByHour[hour]++;
+      }
+    });
+
+    const chartData = visitorsByHour.map((visitors, hour) => ({ hour, visitors }));
+    res.json(chartData);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}

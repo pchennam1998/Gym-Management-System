@@ -1,123 +1,62 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Line } from 'react-chartjs-2';
+import { BarChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Bar } from 'recharts';
 
-const HoursChart = () => {
-  const [location, setLocation] = useState('San Jose Downtown');
-  const [chartData, setChartData] = useState([]);
-  const [timeRange, setTimeRange] = useState('1 day');
-  const [range, setRange] = useState();
-  
+function HoursChart() {
+  const [chartData, setChartData] = useState(null);
+  const [location, setLocation] = useState('San Jose');
+  const [timePeriod, setTimePeriod] = useState(7);
+
   useEffect(() => {
-    // const startDate=new Date();
-    // let endDate=new Date();
-    // endDate.setDate(endDate.getDate() - range);
-
-
-    // console.log(startDate+"   ---->"+endDate)
-    const fetchData = async () => {
-      const response = await axios.post('/hourschart', {
-        location
-      });
-      setChartData(response.data);
-    };
+    async function fetchData() {
+      try {
+        const response = await axios.post('/visitors', { location, timePeriod });
+        setChartData(response.data.data);
+      } catch(error) {
+        console.error(error);
+      }
+    }
     fetchData();
-  }, []);
+  }, [location, timePeriod]);
 
-   const handleLocationChange = (event) => {
+  const handleLocationChange = (event) => {
     setLocation(event.target.value);
-    const loc=event.target.value;
-    const fetchData = async () => {
-      const response = await axios.post('/hourschart', {
-        loc
-      });
-      setChartData(response.data);
-    };
-    fetchData();
   };
 
-  const handleTimeRangeChange = (event) => {
-    setTimeRange(event.target.value);
-    let r;
-    if (event.target.value=="1 day"){
-      setRange(1);
-      r=1;
-    }
-    else if (event.target.value=="1 week"){
-      setRange(7)
-      r=7;
-    }
-    else{
-      setRange(90)
-      r=90;
-    }
-    const startDate=new Date();
-    let endDate=new Date();
-    endDate.setDate(endDate.getDate() - r);
-
-    console.log("range"+r)
-    console.log(startDate+"   ---->"+endDate)
-    const fetchData = async () => {
-      const response = await axios.post('/hourschart', {
-        location
-      });
-      setChartData(response.data);
-    };
-    fetchData();
+  const handleTimePeriodChange = (event) => {
+    setTimePeriod(event.target.value);
   };
-
-  
 
   return (
     <div>
-      <div style={{ position: 'relative' }}>
-        <Line
-          data={{
-            labels: chartData?.map((data) => data.date),
-            datasets: [
-              {
-                label: 'Total Time Spent in Gym',
-                data: chartData?.map((data) => data.totalTime),
-                fill: false,
-                backgroundColor: 'rgba(75,192,192,0.4)',
-                borderColor: 'rgba(75,192,192,1)',
-              },
-            ],
-          }}
-          options={{
-            scales: {
-              yAxes: [
-                {
-                  ticks: {
-                    beginAtZero: true,
-                  },
-                },
-              ],
-            },
-            plugins: {
-              title: {
-                display: true,
-                text: `Location: ${location}`,
-                position: 'top',
-              },
-            },
-          }}
-        />
-        <div style={{ position: 'absolute', top: 0, right: 0 }}>
-          <select value={location} onChange={handleLocationChange}>
-            <option value="San Jose Downtown">San Jose Downtown</option>
-            <option value="Santa Clara">Santa Clara</option>
-            <option value="New York">New York</option>
-          </select>
-          <select value={timeRange} onChange={handleTimeRangeChange}>
-            <option value={"1 day"}>1 day</option>
-            <option value="1 week">1 week</option>
-            <option value="90 days">90 days</option>
-          </select>
-        </div>
+      <div>
+        <label htmlFor="location-select">Select location:</label>
+        <select id="location-select" value={location} onChange={handleLocationChange}>
+          <option value="San Jose Downtown">San Jose</option>
+          <option value="Santa Clara">Santa Clara</option>
+        </select>
+        <label htmlFor="time-period-select">Select time period:</label>
+        <select id="time-period-select" value={timePeriod} onChange={handleTimePeriodChange}>
+          <option value={1}>1 day</option>
+          <option value={7}>1 week</option>
+          <option value={30}>1 month</option>
+          <option value={90}>90 days</option>
+        </select>
       </div>
+      {chartData ? (
+      <BarChart width={800} height={400} data={chartData}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="hour" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Bar dataKey="visitors" stackId="a" fill="#8884d8" />
+      </BarChart>
+      ) : (
+        <div>Loading...</div>
+      )}
     </div>
   );
-};
+}
 
 export default HoursChart;
