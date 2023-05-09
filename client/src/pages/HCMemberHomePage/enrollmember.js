@@ -78,7 +78,12 @@ const EnrollForm = () => {
     if(!checked) {
       await axios.post(`/updatetype/${emailAddress}`, {type}); }
       const response = await axios.post('/all/enroll', enrollData);
+      if (type == 'M') {
+      navigate('/member');
+      }
+      else if (type == 'HCM') {
       navigate('/hcmember');
+      }
       console.log(response.data);
     } catch (error) {
       console.error(error);

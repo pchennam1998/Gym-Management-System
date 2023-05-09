@@ -5,6 +5,7 @@ import "./hcmember.css";
 import Analytics from './analytics';
 import HoursChart from './hoursChart';
 import AllStats from './allstats';
+import Weekdays from './weekdays';
 
 const HCMember = () => {
   const [members, setMembers] = useState([]);
@@ -117,15 +118,20 @@ const HCMember = () => {
       <div>
       <button style={{float: 'right'}} className="btn btn-danger" onClick={handleLogout}>Logout</button><br></br><br></br>
       </div>
-      <div>
+      <div className="analytics-container">
         <div className="analytics-container">
           <Analytics />
+        <div className="stats-container">
+          <Weekdays />
+        </div>
+        </div>
+      </div>
+      <div className="analytics-container">
+      <div className="stats-container">
+          <HoursChart />
         </div>
         <div className="stats-container">
           <AllStats />
-        </div>
-        <div className="analytics-container">
-          <HoursChart />
         </div>
       </div>
     <div className="page-container">

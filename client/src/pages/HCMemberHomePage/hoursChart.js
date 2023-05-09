@@ -4,7 +4,7 @@ import { BarChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Bar } from 'rec
 
 function HoursChart() {
   const [chartData, setChartData] = useState(null);
-  const [location, setLocation] = useState('San Jose');
+  const [location, setLocation] = useState('San Jose Downtown');
   const [timePeriod, setTimePeriod] = useState(7);
 
   useEffect(() => {
@@ -30,6 +30,7 @@ function HoursChart() {
   return (
     <div>
       <div>
+        <h4>Number of Visitors in a day per hour</h4>
         <label htmlFor="location-select">Select location:</label>
         <select id="location-select" value={location} onChange={handleLocationChange}>
           <option value="San Jose Downtown">San Jose</option>
@@ -50,7 +51,7 @@ function HoursChart() {
           <CartesianGrid strokeDasharray="3 3" />
           <Tooltip />
           <Legend />
-          <Bar dataKey="visitors" fill="#B2CFB4" />
+          <Bar dataKey="visitors" fill="#274e13" />
         </BarChart>
       ) : (
         <div>Loading...</div>

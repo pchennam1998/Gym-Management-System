@@ -73,7 +73,7 @@ const Activities = ({ emailAddress }) => {
         </YAxis>
           <Tooltip />
           <Legend />
-          <Bar dataKey="value" fill="#b2cfb4" />
+          <Bar dataKey="value" fill="#0c343d" />
         </BarChart>
       ) : (
         <p>Loading chart...</p>

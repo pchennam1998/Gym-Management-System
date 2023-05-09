@@ -8,7 +8,7 @@ function AnalyticsDashboard() {
   const [location, setLocation] = useState('Santa Clara');
   const [chartData, setChartData] = useState(null);
   const [timePeriod, setTimePeriod] = useState('90');
-  const COLORS = ["#b2cfb4", "#d9e4c7", "#f7f2e7", "#f5dabd", "#d6b081"];
+  const COLORS = ["#073763", "#660000", "#7f6000", "#274e13", "#4c1130"];
 
   Chart.register(CategoryScale);
 

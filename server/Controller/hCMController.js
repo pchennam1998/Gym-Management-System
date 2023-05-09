@@ -272,3 +272,110 @@ exports.visitorsByHour = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 }
+
+const moment = require('moment');
+
+exports.getVisitorsByHour = async (req, res) => {
+  const { location, dayType } = req.body;
+
+  // Determine time range based on dayType
+  let dayStart, dayEnd;
+  if (dayType === 'day') {
+    // Get date range for all days
+    dayStart = moment('2023-01-01').toDate();
+    dayEnd = moment().toDate();
+  } else if (dayType === 'weekday') {
+    // Get date range for all weekdays where records fall
+    const today = moment().day();
+    const daysAgo = (today === 0 ? 2 : (today === 1 ? 3 : 1));
+    dayStart = moment().subtract(daysAgo, 'days').startOf('day').toDate();
+    dayEnd = moment().subtract(1, 'days').endOf('day').toDate();
+  } else if (dayType === 'weekend') {
+    // Get date range for all weekends where records fall
+    const today = moment().day();
+    const daysAgo = (today === 0 ? 3 : (today === 6 ? 1 : 2));
+    dayStart = moment().subtract(daysAgo, 'days').startOf('day').toDate();
+    dayEnd = moment().subtract(1, 'days').endOf('day').toDate();
+  } else {
+    // Assume dayType is a date string
+    const day = new Date(dayType);
+    dayStart = moment(day).toDate();
+    dayEnd = moment(day).add(1, 'days').subtract(1, 'seconds').toDate();
+  }
+
+  // Get all activity records for time range and location
+  try {
+    const activity = await dayActivity.find({
+      location,
+      checkInTime: { $gte: dayStart, $lte: dayEnd }
+    });
+    // Calculate visitors by hour for time range
+    const visitorsByHour = new Array(24).fill(0);
+    activity.forEach((activity) => {
+      const checkInHour = moment(activity.checkInTime).hour();
+      const checkOutHour = moment(activity.checkOutTime).hour();
+      for (let hour = checkInHour; hour <= checkOutHour; hour++) {
+        if (hour >= 9 && hour <= 18) {
+          visitorsByHour[hour]++;
+        }
+      }
+    });
+
+    // Calculate averages for day/weekday/weekend
+    let avg = 0;
+    if (dayType === 'day' || dayType === 'weekday' || dayType === 'weekend') {
+      let days = 0;
+      if (dayType === 'day') {
+        days = moment().diff(moment('2021-01-01'), 'days');
+      } else if (dayType === 'weekday') {
+        days = moment().diff(moment().day(1), 'days') / 7 * 5;
+      } else if (dayType === 'weekend') {
+        days = moment().diff(moment().day(5), 'days') / 7 * 2;
+      }
+      for (let i = 9; i <= 18; i++) {
+        avg += visitorsByHour[i];
+      }
+      avg /= days * 10;
+    }
+
+    // Return results as JSON
+    const chartData = visitorsByHour.slice(9, 19).map((visitors, hour) => ({ hour: hour + 9, visitors }));
+    res.json(chartData);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+exports.getRecordsByWeekday = async (req, res) => {
+  const { location } = req.body;
+
+  try {
+    const activity = await dayActivity.find({ location });
+
+    // Initialize counters for each weekday
+    const weekdayCounts = {
+      Monday: 0,
+      Tuesday: 0,
+      Wednesday: 0,
+      Thursday: 0,
+      Friday: 0,
+      Saturday: 0,
+      Sunday: 0
+    };
+
+    activity.forEach((activity) => {
+      // Get weekday name from checkInTime
+      const checkInDate = moment(activity.checkInTime).toDate();
+      const weekdayName = moment.weekdays(checkInDate.getDay());
+
+      // Increase counter for weekday
+      weekdayCounts[weekdayName]++;
+    });
+
+    res.json({ weekdayCounts });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}

@@ -60,6 +60,10 @@ router.post("/hourlychart", hCMController.hourlyChart);
 
 router.post("/visitors", hCMController.visitorsByHour);
 
+router.post("/getvisitors", hCMController.getVisitorsByHour);
+
+router.post("/getweekday", hCMController.getRecordsByWeekday)
+
 router.post("/hourschart", hCMController.hoursChart);
 
 router.post("/bookings", logHoursController.storeLogHours);

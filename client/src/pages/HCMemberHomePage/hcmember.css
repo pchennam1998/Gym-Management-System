@@ -206,12 +206,13 @@
   }
   
   .member-list-container {
-    width: 50%;
+    width: 60%;
     padding-right: 0px;
+    padding: 0px;
   }
   
   .enrollment-container {
-    width: 50%;
+    width: 40%;
     padding-left: 0px;
   }
   
@@ -305,20 +306,20 @@
     background-color: #fff;
     box-shadow: 0px 0px 5px #ccc;
     margin-right: 10px;
-    width: 58%;
+    width: 100%;
     margin-right: 2%;
     align-items: center;
   }
   
   .stats-container {
     flex: 1;
-    width: 38%;
     height: 80%;
     padding: 20px;
     background-color: #fff;
     box-shadow: 0px 0px 5px #ccc;
+    align-items: center;
     margin-left: 10px;
-    width: 38%;
+    width: 100%;
     margin-right: 2%;
   }
   
