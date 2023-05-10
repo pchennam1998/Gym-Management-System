@@ -78,10 +78,12 @@ const EnrollForm = () => {
     if(!checked) {
       await axios.post(`/updatetype/${emailAddress}`, {type}); }
       const response = await axios.post('/all/enroll', enrollData);
-      if (type == 'M') {
+      const auth = JSON.parse(localStorage.getItem("auth"));
+      const role = auth.employees[0].userRole
+      if (role == 'M') {
       navigate('/member');
       }
-      else if (type == 'HCM') {
+      else if (role == 'HCM') {
       navigate('/hcmember');
       }
       console.log(response.data);
