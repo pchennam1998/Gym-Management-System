@@ -13,6 +13,7 @@ function Member(props) {
   const [record, setRecord] = useState(null);
   const navigate = useNavigate();
   const [email, setEmail] = useState();
+  const auth = JSON.parse(localStorage.getItem("auth"));
 
 	const handleLogout = () => {
 		console.log("Logout came")
@@ -55,9 +56,10 @@ function Member(props) {
       <div class="member-card nm-type">
         <div class="nm-member-info">
         <h3><br></br><b>Member Signup for classes</b></h3>
+          {auth.employees[0].userRole == 'M' && 
           <div class="nm-member-name">{record.firstName} {record.lastName} <Link to={`/enrollmember?email=${email}`}>
       <button className="btn1">Signup for the classes in advance</button>
-    </Link></div>
+    </Link></div>}
           {/* <div class="nm-member-email"><b>{nonmember.emailAddress}</b></div> */}
         </div>
       </div>

@@ -18,6 +18,11 @@ router.get("/", function(req,res){
 });
 
 //Login Authentication API
+
+router.get("/", function(req,res){
+    return res.status(200).json("Successfully Loaded");
+});
+
 router.post("/all/login", loginController.logIn);
 
 router.get("/all/genInfo", genInfoController.genIn);
