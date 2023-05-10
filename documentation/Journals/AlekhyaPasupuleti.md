@@ -1,6 +1,6 @@
 
 
-# Pavan Sai Chennam
+# Alekhya Pasupuleti
 
 ## Sprint 1 ( 21st February, 2023 - 06th March)
 
