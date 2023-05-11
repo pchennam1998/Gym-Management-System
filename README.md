@@ -37,6 +37,10 @@
 • Simplicity<br />
 • Feedback<br />
 
+# Project Github Repo
+
+Project Repository is available [here](https://github.com/gopinathsjsu/team-project-team-two0owt)
+
 # Project Board
 
 Project Board is available [here](https://github.com/orgs/gopinathsjsu/projects/84/views/2)
