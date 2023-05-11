@@ -40,6 +40,11 @@ Below is the link to Sprint sheet along with the Burndown charts.<br />
 
 [Sprint Sheet](https://docs.google.com/spreadsheets/d/15ESOcwAWS9KTMRUC7-Spi8IHdli4D_klHfBFUR8EXy4/edit?usp=sharing)
 
+#Weekly Scrum Report
+Below is the link to Weekly Scrum Report along with the XP Core values
+
+[Weekly Scrum Report](https://docs.google.com/spreadsheets/d/1DtopmnB7vX5VT4Nbi-QbUHCYkosArpwpwMxifhLQrLo/edit?usp=sharing)
+
 # Architecture Diagram
 ![](CMPE202_Architecture.png)
 <img src="https://github.com/gopinathsjsu/team-project-team-two0owt/blob/main/documentation/wireframes/CMPE202_Architecture.png" width="600">
