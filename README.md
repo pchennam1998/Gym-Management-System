@@ -22,9 +22,9 @@
 # Task Allocations:
 • Frontend: Pavan Sai Ch, Pavan Satyam<br /> 
 • Backend: Alekhya, Pavan Sai Ch<br /> 
-• Integration of Frontend and Backend: Pavan Satyam and Piyush<br />
+• Integration of Frontend and Backend: Pavan Sai Ch, Pavan Satyam and Piyush<br />
 • Deployment: Pavan Sai Ch, Pavan Satyam<br /> 
-• Documentation: Piyush, Alekhya<br /> 
+• Documentation: Pavan Sai Ch, Piyush, Alekhya<br /> 
 
 # XP Core Values:
 • Communication<br /> 
