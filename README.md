@@ -35,6 +35,9 @@
 # Project Board
 Project Board is available [here](https://github.com/orgs/gopinathsjsu/projects/84/views/2)
 
+# Project Journals
+Project Journals are available [here](https://github.com/gopinathsjsu/team-project-team-two0owt/tree/main/documentation/Journals)
+
 # Sprint Sheet
 Below is the link to Sprint sheet along with the Burndown charts.<br />
 
