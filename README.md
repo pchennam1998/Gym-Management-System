@@ -101,3 +101,7 @@ Below is the link to Weekly Scrum Report along with the XP Core values
 • Health Club Component Diagram<br />
 A component diagram depicts the components, interfaces, dependencies, and relationships of a system. The following diagram shows the components involved in the system:
 <img src="https://github.com/gopinathsjsu/team-project-team-two0owt/blob/main/documentation/UML_Diagrams/Health_club_component_diagram.jpg" width="600">
+
+• Health Club Deployment Diagram<br />
+A deployment diagram shows the hardware topology of a system, including nodes, components, and their relationships. The following diagram shows how the components are deployed in different nodes:
+<img src="https://github.com/gopinathsjsu/team-project-team-two0owt/blob/main/documentation/UML_Diagrams/Health_club_deployment_diagram.jpg" width="600">
