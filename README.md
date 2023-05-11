@@ -97,3 +97,7 @@ Below is the link to Weekly Scrum Report along with the XP Core values
 • Health Club Use Case Diagram<br />
 
 <img src="https://github.com/gopinathsjsu/team-project-team-two0owt/blob/main/documentation/UML_Diagrams/Health_club_usecase_diagram.jpg" width="600">
+
+• Health Club Component Diagram<br />
+A component diagram depicts the components, interfaces, dependencies, and relationships of a system. The following diagram shows the components involved in the system:
+<img src="https://github.com/gopinathsjsu/team-project-team-two0owt/blob/main/documentation/UML_Diagrams/Health_club_component_diagram.jpg" width="600">
