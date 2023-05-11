@@ -69,8 +69,8 @@ Below is the link to Sprint sheet along with the Burndown charts.<br />
 # UML Diagrams 
 • Health Club Class Diagram<br /> 
 ![](Health_club_class diagram.jpg)
-<img src="https://github.com/gopinathsjsu/team-project-team-two0owt/blob/main/documentation/UML Diagrams/Health_club_class diagram.jpg" width="600">
+<img src="https://github.com/gopinathsjsu/team-project-team-two0owt/blob/main/documentation/UML_Diagrams/Health_club_class diagram.jpg" width="600">
 
 • Health Club Use Case Diagram<br /> 
 ![](Health_club_usecase diagram.jpg)
-<img src="https://github.com/gopinathsjsu/team-project-team-two0owt/blob/main/documentation/UML Diagrams/Health_club_usecase diagram.jpg" width="600">
+<img src="https://github.com/gopinathsjsu/team-project-team-two0owt/blob/main/documentation/UML_Diagrams/Health_club_usecase diagram.jpg" width="600">
