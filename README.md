@@ -24,7 +24,7 @@
 
 # Task Allocations:
 
-• Frontend: Pavan Sai Ch, Pavan Satyam<br />
+• Frontend: Pavan Sai Ch, Pavan Satyam, Alekhya Pasupuleti<br />
 • Backend: Alekhya, Pavan Sai Ch<br />
 • Integration of Frontend and Backend: Pavan Sai Ch, Pavan Satyam and Piyush<br />
 • Deployment: Pavan Sai Ch, Pavan Satyam<br />
